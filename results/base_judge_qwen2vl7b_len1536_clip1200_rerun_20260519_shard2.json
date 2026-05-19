@@ -1,0 +1,2576 @@
+{
+  "summary": {
+    "accuracy": 0.42628205128205127,
+    "num_examples": 312,
+    "parse_rate": 0.9903846153846154,
+    "by_source": {
+      "": {
+        "accuracy": 0.5316455696202531,
+        "num_examples": 79
+      },
+      "COCO": {
+        "accuracy": 0.45454545454545453,
+        "num_examples": 22
+      },
+      "GQA": {
+        "accuracy": 0.4,
+        "num_examples": 5
+      },
+      "LCS-558K": {
+        "accuracy": 0.375,
+        "num_examples": 8
+      },
+      "OCR-VQA": {
+        "accuracy": 0.5,
+        "num_examples": 2
+      },
+      "OK-VQA": {
+        "accuracy": 0.2857142857142857,
+        "num_examples": 7
+      },
+      "POVID_preference_data_for_VLLMs": {
+        "accuracy": 0.4017857142857143,
+        "num_examples": 112
+      },
+      "TextVQA": {
+        "accuracy": 0.0,
+        "num_examples": 4
+      },
+      "VQAv2": {
+        "accuracy": 0.5,
+        "num_examples": 6
+      },
+      "coco": {
+        "accuracy": 0.36363636363636365,
+        "num_examples": 11
+      },
+      "jailbreak-Fraud": {
+        "accuracy": 1.0,
+        "num_examples": 1
+      },
+      "jailbreak-typo-Illegal_Activitiy": {
+        "accuracy": 1.0,
+        "num_examples": 1
+      },
+      "politics-Gov_Decision": {
+        "accuracy": 1.0,
+        "num_examples": 1
+      },
+      "sharegpt4v-textvqa": {
+        "accuracy": 1.0,
+        "num_examples": 1
+      },
+      "sharegpt4v-web-celebrity": {
+        "accuracy": 0.0,
+        "num_examples": 3
+      },
+      "vqav2": {
+        "accuracy": 0.3333333333333333,
+        "num_examples": 6
+      },
+      "wildvision-battle": {
+        "accuracy": 0.3488372093023256,
+        "num_examples": 43
+      }
+    },
+    "method": "base_model_generative_judge"
+  },
+  "results": [
+    {
+      "id": "RLAIF-V-10345",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "TextVQA"
+    },
+    {
+      "id": "RLAIF-V-12031",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "sharegpt4v-web-celebrity"
+    },
+    {
+      "id": "RLAIF-V-13292",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "LCS-558K"
+    },
+    {
+      "id": "RLAIF-V-13729",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "VQAv2"
+    },
+    {
+      "id": "RLAIF-V-15279",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "COCO"
+    },
+    {
+      "id": "RLAIF-V-16213",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "COCO"
+    },
+    {
+      "id": "RLAIF-V-1808",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "COCO"
+    },
+    {
+      "id": "RLAIF-V-1987",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "COCO"
+    },
+    {
+      "id": "RLAIF-V-2163",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "COCO"
+    },
+    {
+      "id": "RLAIF-V-2299",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "GQA"
+    },
+    {
+      "id": "RLAIF-V-23935",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "COCO"
+    },
+    {
+      "id": "RLAIF-V-2500",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "COCO"
+    },
+    {
+      "id": "RLAIF-V-25866",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "COCO"
+    },
+    {
+      "id": "RLAIF-V-26759",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "OK-VQA"
+    },
+    {
+      "id": "RLAIF-V-27632",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "GQA"
+    },
+    {
+      "id": "RLAIF-V-2920",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "sharegpt4v-web-celebrity"
+    },
+    {
+      "id": "RLAIF-V-31638",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "GQA"
+    },
+    {
+      "id": "RLAIF-V-33435",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "COCO"
+    },
+    {
+      "id": "RLAIF-V-34139",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "VQAv2"
+    },
+    {
+      "id": "RLAIF-V-34759",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "TextVQA"
+    },
+    {
+      "id": "RLAIF-V-3611",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "OK-VQA"
+    },
+    {
+      "id": "RLAIF-V-38612",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "OCR-VQA"
+    },
+    {
+      "id": "RLAIF-V-39736",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "COCO"
+    },
+    {
+      "id": "RLAIF-V-40322",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "GQA"
+    },
+    {
+      "id": "RLAIF-V-41386",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "VQAv2"
+    },
+    {
+      "id": "RLAIF-V-42031",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "GQA"
+    },
+    {
+      "id": "RLAIF-V-42472",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "LCS-558K"
+    },
+    {
+      "id": "RLAIF-V-43117",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "LCS-558K"
+    },
+    {
+      "id": "RLAIF-V-43413",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "LCS-558K"
+    },
+    {
+      "id": "RLAIF-V-45618",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "TextVQA"
+    },
+    {
+      "id": "RLAIF-V-47389",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "TextVQA"
+    },
+    {
+      "id": "RLAIF-V-4904",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "LCS-558K"
+    },
+    {
+      "id": "RLAIF-V-5066",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "sharegpt4v-web-celebrity"
+    },
+    {
+      "id": "RLAIF-V-52225",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "OK-VQA"
+    },
+    {
+      "id": "RLAIF-V-53980",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "COCO"
+    },
+    {
+      "id": "RLAIF-V-55592",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "OCR-VQA"
+    },
+    {
+      "id": "RLAIF-V-59369",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "OK-VQA"
+    },
+    {
+      "id": "RLAIF-V-60973",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "VQAv2"
+    },
+    {
+      "id": "RLAIF-V-63676",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "COCO"
+    },
+    {
+      "id": "RLAIF-V-64437",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "COCO"
+    },
+    {
+      "id": "RLAIF-V-66160",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "VQAv2"
+    },
+    {
+      "id": "RLAIF-V-66295",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "sharegpt4v-textvqa"
+    },
+    {
+      "id": "RLAIF-V-66941",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "OK-VQA"
+    },
+    {
+      "id": "RLAIF-V-68603",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "COCO"
+    },
+    {
+      "id": "RLAIF-V-69811",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "COCO"
+    },
+    {
+      "id": "RLAIF-V-71010",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "COCO"
+    },
+    {
+      "id": "RLAIF-V-7260",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "COCO"
+    },
+    {
+      "id": "RLAIF-V-73754",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "LCS-558K"
+    },
+    {
+      "id": "RLAIF-V-74612",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "OK-VQA"
+    },
+    {
+      "id": "RLAIF-V-74952",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "VQAv2"
+    },
+    {
+      "id": "RLAIF-V-75270",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "COCO"
+    },
+    {
+      "id": "RLAIF-V-75935",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "COCO"
+    },
+    {
+      "id": "RLAIF-V-76759",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "OK-VQA"
+    },
+    {
+      "id": "RLAIF-V-77744",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "COCO"
+    },
+    {
+      "id": "RLAIF-V-79294",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "LCS-558K"
+    },
+    {
+      "id": "RLAIF-V-79584",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "LCS-558K"
+    },
+    {
+      "id": "RLAIF-V-81903",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "COCO"
+    },
+    {
+      "id": "RLAIF-V-8914",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "COCO"
+    },
+    {
+      "id": "RLHF-V-103",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "vqav2"
+    },
+    {
+      "id": "RLHF-V-1283",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "vqav2"
+    },
+    {
+      "id": "RLHF-V-1616",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "coco"
+    },
+    {
+      "id": "RLHF-V-1716",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "coco"
+    },
+    {
+      "id": "RLHF-V-1827",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "coco"
+    },
+    {
+      "id": "RLHF-V-2139",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "coco"
+    },
+    {
+      "id": "RLHF-V-2258",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "coco"
+    },
+    {
+      "id": "RLHF-V-2552",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "coco"
+    },
+    {
+      "id": "RLHF-V-31",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "vqav2"
+    },
+    {
+      "id": "RLHF-V-3669",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "coco"
+    },
+    {
+      "id": "RLHF-V-3862",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "coco"
+    },
+    {
+      "id": "RLHF-V-4161",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "coco"
+    },
+    {
+      "id": "RLHF-V-467",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "vqav2"
+    },
+    {
+      "id": "RLHF-V-4912",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "coco"
+    },
+    {
+      "id": "RLHF-V-5176",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "coco"
+    },
+    {
+      "id": "RLHF-V-544",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "vqav2"
+    },
+    {
+      "id": "RLHF-V-764",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "vqav2"
+    },
+    {
+      "id": "hallucination_pair-1003",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-10124",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-10223",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-10335",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-10414",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-10564",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-10666",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-10763",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-10871",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-1100",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-11087",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-11206",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-11329",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-11396",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-11520",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-1171",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-11798",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-11890",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-12009",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-12103",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-12204",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-12328",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-12477",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-12585",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-12743",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-12873",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-1292",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-13123",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-1332",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-1337",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-13419",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-13519",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-13698",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-13769",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-140",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-14058",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-14127",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-14309",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-14481",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-14532",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-14620",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-14904",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-14999",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-15046",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-15120",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-1569",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-1670",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-1798",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-1942",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-2084",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-2240",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-2428",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-2450",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-2547",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-262",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-2744",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-2851",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-2975",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-3149",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-3275",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-3491",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-3586",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-3738",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-3806",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-3914",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-4013",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-4068",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-4111",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-4178",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-4287",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-4435",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-4742",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-4852",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-4935",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-5089",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-515",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-5279",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-537",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-5593",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-5670",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-5812",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-5857",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-5904",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-6044",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-6089",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-6159",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-6301",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-6360",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-6590",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-6738",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-6784",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-6947",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-7195",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-7261",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-7382",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-7564",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-7824",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-7973",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-8094",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-8164",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-8353",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-8502",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-8660",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-8736",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-8848",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-9023",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-918",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-9308",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-9638",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-9781",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-9901",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-9950",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "jailbreak-Fraud-29",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "jailbreak-Fraud"
+    },
+    {
+      "id": "jailbreak-typo-Illegal_Activitiy-8",
+      "label": 1,
+      "prediction": 1,
+      "correct": true,
+      "raw_output": "B",
+      "source": "jailbreak-typo-Illegal_Activitiy"
+    },
+    {
+      "id": "mathverse_1039",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": ""
+    },
+    {
+      "id": "mathverse_1079",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": ""
+    },
+    {
+      "id": "mathverse_1149",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": ""
+    },
+    {
+      "id": "mathverse_1294",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": ""
+    },
+    {
+      "id": "mathverse_1368",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": ""
+    },
+    {
+      "id": "mathverse_1609",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": ""
+    },
+    {
+      "id": "mathverse_1678",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": ""
+    },
+    {
+      "id": "mathverse_1714",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": ""
+    },
+    {
+      "id": "mathverse_1723",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": ""
+    },
+    {
+      "id": "mathverse_1738",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": ""
+    },
+    {
+      "id": "mathverse_1784",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": ""
+    },
+    {
+      "id": "mathverse_1829",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": ""
+    },
+    {
+      "id": "mathverse_1908",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": ""
+    },
+    {
+      "id": "mathverse_2028",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": ""
+    },
+    {
+      "id": "mathverse_2108",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": ""
+    },
+    {
+      "id": "mathverse_2128",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": ""
+    },
+    {
+      "id": "mathverse_2174",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": ""
+    },
+    {
+      "id": "mathverse_2363",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": ""
+    },
+    {
+      "id": "mathverse_2444",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": ""
+    },
+    {
+      "id": "mathverse_2569-2",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": ""
+    },
+    {
+      "id": "mathverse_2644",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": ""
+    },
+    {
+      "id": "mathverse_2653-2",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": ""
+    },
+    {
+      "id": "mathverse_2714",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": ""
+    },
+    {
+      "id": "mathverse_2853",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": ""
+    },
+    {
+      "id": "mathverse_2884",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": ""
+    },
+    {
+      "id": "mathverse_3204-1",
+      "label": 1,
+      "prediction": 0,
+      "correct": false,
+      "raw_output": "A",
+      "source": ""
+    },
+    {
+      "id": "mathverse_3244",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": ""
+    },
+    {
+      "id": "mathverse_3274",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": ""
+    },
+    {
+      "id": "mathverse_3344",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": ""
+    },
+    {
+      "id": "mathverse_3414-1",
+      "label": 1,
+      "prediction": 1,
+      "correct": true,
+      "raw_output": "B",
+      "source": ""
+    },
+    {
+      "id": "mathverse_3424",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": ""
+    },
+    {
+      "id": "mathverse_3478",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": ""
+    },
+    {
+      "id": "mathverse_3509",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": ""
+    },
+    {
+      "id": "mathverse_3559",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": ""
+    },
+    {
+      "id": "mathverse_3678",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": ""
+    },
+    {
+      "id": "mathverse_3724",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": ""
+    },
+    {
+      "id": "mathverse_3749-2",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": ""
+    },
+    {
+      "id": "mathverse_3794",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": ""
+    },
+    {
+      "id": "mathverse_3854",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": ""
+    },
+    {
+      "id": "mathverse_549",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": ""
+    },
+    {
+      "id": "mathverse_638",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": ""
+    },
+    {
+      "id": "mathverse_894",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Agriculture_93",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Art_Theory_11",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Biology_307",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Chemistry_326",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Chemistry_96",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Clinical_Medicine_45",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Computer_Science_334",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Diagnostics_and_Laboratory_Medicine_101",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Economics_16",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Electronics_101",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Electronics_252",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Electronics_69",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "E",
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Energy_and_Power_375",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Finance_163",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Finance_77",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Geography_428",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Literature_105",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Literature_47",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Manage_87",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Marketing_37",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "^2 \\cdot \\text{Freq",
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Materials_417",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Math_390",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Mechanical_Engineering_96",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Pharmacy_410",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Public_Health_465",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": " Expected frequency: \\(\\frac{2",
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_validation_Basic_Medical_Science_13",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_validation_Computer_Science_10",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_validation_Energy_and_Power_27",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_validation_Geography_8-1",
+      "label": 1,
+      "prediction": 1,
+      "correct": true,
+      "raw_output": "B",
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_validation_Literature_8",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_validation_Marketing_19",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_validation_Materials_7",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_validation_Math_29",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_validation_Mechanical_Engineering_5",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_validation_Pharmacy_23",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_validation_Physics_30",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_validation_Public_Health_28",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": ""
+    },
+    {
+      "id": "politics-Gov_Decision-124",
+      "label": 1,
+      "prediction": 1,
+      "correct": true,
+      "raw_output": "B",
+      "source": "politics-Gov_Decision"
+    },
+    {
+      "id": "wildvision-battle-1070",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-1141",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-1201",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-1237",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-13",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-1480",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-163",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-195",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-2107",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-2229",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-236",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-2377",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-2476",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-2503",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-254",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-2604",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-2648",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-2722",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-2852",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-2991",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-319",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-3402",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-3592",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-3676",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-3763",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-3955",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-4081",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-4211",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-4368",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-4455",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-4724",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-4844",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-496",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-5123",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-531",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-5467",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-5677",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-5829",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-5971",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-6109",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-6189",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-747",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-976",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "wildvision-battle"
+    }
+  ]
+}

@@ -1,0 +1,2889 @@
+{
+  "summary": {
+    "accuracy": 0.717948717948718,
+    "num_examples": 312,
+    "by_source": {
+      "": {
+        "accuracy": 0.55,
+        "num_examples": 80
+      },
+      "COCO": {
+        "accuracy": 0.9090909090909091,
+        "num_examples": 11
+      },
+      "GQA": {
+        "accuracy": 0.6666666666666666,
+        "num_examples": 6
+      },
+      "Google-Landmark": {
+        "accuracy": 1.0,
+        "num_examples": 3
+      },
+      "LCS-558K": {
+        "accuracy": 0.7272727272727273,
+        "num_examples": 11
+      },
+      "OK-VQA": {
+        "accuracy": 1.0,
+        "num_examples": 11
+      },
+      "POVID_preference_data_for_VLLMs": {
+        "accuracy": 0.8125,
+        "num_examples": 112
+      },
+      "TextVQA": {
+        "accuracy": 1.0,
+        "num_examples": 1
+      },
+      "VQAv2": {
+        "accuracy": 0.8571428571428571,
+        "num_examples": 14
+      },
+      "coco": {
+        "accuracy": 0.7272727272727273,
+        "num_examples": 11
+      },
+      "jailbreak-typo-Illegal_Activitiy": {
+        "accuracy": 0.0,
+        "num_examples": 1
+      },
+      "sharegpt4v-textvqa": {
+        "accuracy": 1.0,
+        "num_examples": 1
+      },
+      "sharegpt4v-web-celebrity": {
+        "accuracy": 0.5,
+        "num_examples": 2
+      },
+      "sharegpt4v-wikiart": {
+        "accuracy": 1.0,
+        "num_examples": 1
+      },
+      "vqav2": {
+        "accuracy": 0.75,
+        "num_examples": 4
+      },
+      "wildvision-battle": {
+        "accuracy": 0.6046511627906976,
+        "num_examples": 43
+      }
+    },
+    "checkpoint": "outputs/internvl25_2b_lora_reward_h4mix30k_r16_l8_len1536_no_logits_4g/reward_lora_best.pt",
+    "checkpoint_best": {
+      "val_acc": 0.7423887587822015,
+      "epoch": 1,
+      "step": 986
+    },
+    "method": "lora_score_head"
+  },
+  "results": [
+    {
+      "id": "RLAIF-V-10273",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 0.4044020473957062,
+      "score_b": 0.33728334307670593,
+      "source": "COCO"
+    },
+    {
+      "id": "RLAIF-V-1169",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 3.0842373371124268,
+      "score_b": 2.435624599456787,
+      "source": "LCS-558K"
+    },
+    {
+      "id": "RLAIF-V-12608",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 3.6036794185638428,
+      "score_b": 2.035782814025879,
+      "source": "COCO"
+    },
+    {
+      "id": "RLAIF-V-13503",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": 2.0045692920684814,
+      "score_b": 3.414236307144165,
+      "source": "LCS-558K"
+    },
+    {
+      "id": "RLAIF-V-14901",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 5.288309574127197,
+      "score_b": 2.4887688159942627,
+      "source": "Google-Landmark"
+    },
+    {
+      "id": "RLAIF-V-16047",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 1.8294137716293335,
+      "score_b": 0.6382931470870972,
+      "source": "GQA"
+    },
+    {
+      "id": "RLAIF-V-18017",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": 1.7908581495285034,
+      "score_b": 1.8379262685775757,
+      "source": "GQA"
+    },
+    {
+      "id": "RLAIF-V-19755",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 5.0204291343688965,
+      "score_b": 2.4746475219726562,
+      "source": "OK-VQA"
+    },
+    {
+      "id": "RLAIF-V-21465",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 4.786891460418701,
+      "score_b": 3.0147292613983154,
+      "source": "COCO"
+    },
+    {
+      "id": "RLAIF-V-21990",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 3.2476234436035156,
+      "score_b": -0.33590278029441833,
+      "source": "Google-Landmark"
+    },
+    {
+      "id": "RLAIF-V-23227",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 5.693134784698486,
+      "score_b": 1.9194841384887695,
+      "source": "LCS-558K"
+    },
+    {
+      "id": "RLAIF-V-24227",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 3.183091402053833,
+      "score_b": -0.6870819330215454,
+      "source": "VQAv2"
+    },
+    {
+      "id": "RLAIF-V-25610",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 4.349541187286377,
+      "score_b": 3.4959728717803955,
+      "source": "Google-Landmark"
+    },
+    {
+      "id": "RLAIF-V-26419",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 5.240279674530029,
+      "score_b": 4.157317161560059,
+      "source": "OK-VQA"
+    },
+    {
+      "id": "RLAIF-V-276",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 1.0198169946670532,
+      "score_b": -1.4811192750930786,
+      "source": "TextVQA"
+    },
+    {
+      "id": "RLAIF-V-28739",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 4.977118492126465,
+      "score_b": 0.21867942810058594,
+      "source": "OK-VQA"
+    },
+    {
+      "id": "RLAIF-V-30789",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 6.61055326461792,
+      "score_b": 4.1044535636901855,
+      "source": "VQAv2"
+    },
+    {
+      "id": "RLAIF-V-32948",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 2.417820930480957,
+      "score_b": 1.076888918876648,
+      "source": "VQAv2"
+    },
+    {
+      "id": "RLAIF-V-33744",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 6.627547264099121,
+      "score_b": 2.188124418258667,
+      "source": "VQAv2"
+    },
+    {
+      "id": "RLAIF-V-34504",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 5.254618167877197,
+      "score_b": 2.9225893020629883,
+      "source": "VQAv2"
+    },
+    {
+      "id": "RLAIF-V-36094",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 6.126484394073486,
+      "score_b": 2.3285458087921143,
+      "source": "GQA"
+    },
+    {
+      "id": "RLAIF-V-38307",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 5.20709228515625,
+      "score_b": 4.123222351074219,
+      "source": "LCS-558K"
+    },
+    {
+      "id": "RLAIF-V-39505",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": -1.532504677772522,
+      "score_b": 0.7225258350372314,
+      "source": "GQA"
+    },
+    {
+      "id": "RLAIF-V-40207",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 0.5312479734420776,
+      "score_b": 0.37550926208496094,
+      "source": "COCO"
+    },
+    {
+      "id": "RLAIF-V-41172",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 1.4328303337097168,
+      "score_b": -0.6377147436141968,
+      "source": "VQAv2"
+    },
+    {
+      "id": "RLAIF-V-41506",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -1.11445152759552,
+      "score_b": -1.5909992456436157,
+      "source": "sharegpt4v-wikiart"
+    },
+    {
+      "id": "RLAIF-V-42328",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": -1.321457028388977,
+      "score_b": -0.46799567341804504,
+      "source": "VQAv2"
+    },
+    {
+      "id": "RLAIF-V-43042",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 2.16211199760437,
+      "score_b": -3.500967264175415,
+      "source": "OK-VQA"
+    },
+    {
+      "id": "RLAIF-V-43353",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": -5.776684284210205,
+      "score_b": -3.72753643989563,
+      "source": "VQAv2"
+    },
+    {
+      "id": "RLAIF-V-45467",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 5.276861667633057,
+      "score_b": -0.7385935187339783,
+      "source": "VQAv2"
+    },
+    {
+      "id": "RLAIF-V-47135",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 1.4040179252624512,
+      "score_b": 1.0229483842849731,
+      "source": "VQAv2"
+    },
+    {
+      "id": "RLAIF-V-48893",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 2.3380320072174072,
+      "score_b": 1.2018264532089233,
+      "source": "OK-VQA"
+    },
+    {
+      "id": "RLAIF-V-5046",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": 2.2677829265594482,
+      "score_b": 3.871051073074341,
+      "source": "LCS-558K"
+    },
+    {
+      "id": "RLAIF-V-5193",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 2.3299148082733154,
+      "score_b": 0.9843469858169556,
+      "source": "OK-VQA"
+    },
+    {
+      "id": "RLAIF-V-53776",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 3.1800026893615723,
+      "score_b": -0.12830671668052673,
+      "source": "VQAv2"
+    },
+    {
+      "id": "RLAIF-V-55190",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 3.6857473850250244,
+      "score_b": 1.9225531816482544,
+      "source": "sharegpt4v-textvqa"
+    },
+    {
+      "id": "RLAIF-V-5903",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": 1.6621781587600708,
+      "score_b": 2.385234832763672,
+      "source": "COCO"
+    },
+    {
+      "id": "RLAIF-V-60589",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 0.7178993821144104,
+      "score_b": 0.09859468042850494,
+      "source": "VQAv2"
+    },
+    {
+      "id": "RLAIF-V-63127",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 2.191389799118042,
+      "score_b": 0.4891049563884735,
+      "source": "COCO"
+    },
+    {
+      "id": "RLAIF-V-64297",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 1.2060469388961792,
+      "score_b": 0.40936312079429626,
+      "source": "OK-VQA"
+    },
+    {
+      "id": "RLAIF-V-66016",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": 0.5268875956535339,
+      "score_b": 2.064905881881714,
+      "source": "sharegpt4v-web-celebrity"
+    },
+    {
+      "id": "RLAIF-V-66231",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 0.325225293636322,
+      "score_b": -0.13133056461811066,
+      "source": "LCS-558K"
+    },
+    {
+      "id": "RLAIF-V-6667",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 1.8462671041488647,
+      "score_b": 0.8360623121261597,
+      "source": "OK-VQA"
+    },
+    {
+      "id": "RLAIF-V-6786",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 4.1023406982421875,
+      "score_b": 2.472360849380493,
+      "source": "GQA"
+    },
+    {
+      "id": "RLAIF-V-69648",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 0.8064584136009216,
+      "score_b": -0.05889834836125374,
+      "source": "OK-VQA"
+    },
+    {
+      "id": "RLAIF-V-70860",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 4.970008373260498,
+      "score_b": 4.191420078277588,
+      "source": "COCO"
+    },
+    {
+      "id": "RLAIF-V-72377",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 1.346336007118225,
+      "score_b": -0.3138515055179596,
+      "source": "VQAv2"
+    },
+    {
+      "id": "RLAIF-V-73495",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 4.843067169189453,
+      "score_b": 4.153408527374268,
+      "source": "OK-VQA"
+    },
+    {
+      "id": "RLAIF-V-74583",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": -2.4861578941345215,
+      "score_b": -0.9670224189758301,
+      "source": "LCS-558K"
+    },
+    {
+      "id": "RLAIF-V-74798",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 1.6211813688278198,
+      "score_b": 0.28212597966194153,
+      "source": "GQA"
+    },
+    {
+      "id": "RLAIF-V-75228",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 1.4560856819152832,
+      "score_b": 0.03785894438624382,
+      "source": "OK-VQA"
+    },
+    {
+      "id": "RLAIF-V-7589",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 1.1243301630020142,
+      "score_b": -0.6387845277786255,
+      "source": "LCS-558K"
+    },
+    {
+      "id": "RLAIF-V-76753",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 3.396135091781616,
+      "score_b": 1.681456208229065,
+      "source": "COCO"
+    },
+    {
+      "id": "RLAIF-V-7761",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 4.739396572113037,
+      "score_b": -0.8361349701881409,
+      "source": "VQAv2"
+    },
+    {
+      "id": "RLAIF-V-78397",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 1.4525244235992432,
+      "score_b": 1.0908000469207764,
+      "source": "COCO"
+    },
+    {
+      "id": "RLAIF-V-79527",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 3.171126127243042,
+      "score_b": -0.08969593048095703,
+      "source": "COCO"
+    },
+    {
+      "id": "RLAIF-V-81811",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 3.2033627033233643,
+      "score_b": 1.6216421127319336,
+      "source": "sharegpt4v-web-celebrity"
+    },
+    {
+      "id": "RLAIF-V-8497",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 0.44178739190101624,
+      "score_b": -0.7166256308555603,
+      "source": "COCO"
+    },
+    {
+      "id": "RLAIF-V-9480",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 4.005908489227295,
+      "score_b": 3.218485116958618,
+      "source": "LCS-558K"
+    },
+    {
+      "id": "RLHF-V-1175",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": -5.51897668838501,
+      "score_b": -3.7727553844451904,
+      "source": "vqav2"
+    },
+    {
+      "id": "RLHF-V-1533",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -0.3544353246688843,
+      "score_b": -1.4867324829101562,
+      "source": "LCS-558K"
+    },
+    {
+      "id": "RLHF-V-1713",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -2.4223692417144775,
+      "score_b": -3.9958932399749756,
+      "source": "coco"
+    },
+    {
+      "id": "RLHF-V-1787",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 0.4707491397857666,
+      "score_b": -3.595815896987915,
+      "source": "coco"
+    },
+    {
+      "id": "RLHF-V-2136",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": -4.718055725097656,
+      "score_b": -4.441900253295898,
+      "source": "coco"
+    },
+    {
+      "id": "RLHF-V-2231",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 0.09964980185031891,
+      "score_b": -4.61429500579834,
+      "source": "coco"
+    },
+    {
+      "id": "RLHF-V-2445",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -0.9564199447631836,
+      "score_b": -5.176599025726318,
+      "source": "coco"
+    },
+    {
+      "id": "RLHF-V-3096",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -0.511612057685852,
+      "score_b": -1.3649460077285767,
+      "source": "vqav2"
+    },
+    {
+      "id": "RLHF-V-3340",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -1.0267529487609863,
+      "score_b": -2.208423376083374,
+      "source": "vqav2"
+    },
+    {
+      "id": "RLHF-V-3857",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": -1.2643439769744873,
+      "score_b": -0.5523703098297119,
+      "source": "coco"
+    },
+    {
+      "id": "RLHF-V-414",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -0.3120580017566681,
+      "score_b": -5.804626941680908,
+      "source": "vqav2"
+    },
+    {
+      "id": "RLHF-V-4603",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 1.272375464439392,
+      "score_b": -1.5149734020233154,
+      "source": "coco"
+    },
+    {
+      "id": "RLHF-V-4905",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 0.3922504484653473,
+      "score_b": -0.4712577760219574,
+      "source": "coco"
+    },
+    {
+      "id": "RLHF-V-5095",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 0.5848484635353088,
+      "score_b": 0.2415861338376999,
+      "source": "coco"
+    },
+    {
+      "id": "RLHF-V-5328",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -0.2564864456653595,
+      "score_b": -1.4415490627288818,
+      "source": "coco"
+    },
+    {
+      "id": "RLHF-V-5665",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": -1.3684368133544922,
+      "score_b": 0.9568776488304138,
+      "source": "coco"
+    },
+    {
+      "id": "RLHF-V-957",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 1.2108056545257568,
+      "score_b": 0.659898042678833,
+      "source": "LCS-558K"
+    },
+    {
+      "id": "hallucination_pair-10079",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": -0.3027710020542145,
+      "score_b": 0.6844601035118103,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-10205",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -0.3952080309391022,
+      "score_b": -0.8058637380599976,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-1033",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": 0.21423311531543732,
+      "score_b": 0.23414936661720276,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-10374",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -0.8633442521095276,
+      "score_b": -1.5135502815246582,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-10539",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -1.5064727067947388,
+      "score_b": -1.9525269269943237,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-10638",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -0.7142683267593384,
+      "score_b": -1.2908997535705566,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-10707",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 1.7309287786483765,
+      "score_b": -3.443829298019409,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-10862",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -0.39067623019218445,
+      "score_b": -0.7548608183860779,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-10970",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -0.44460898637771606,
+      "score_b": -1.184995174407959,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-11036",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -0.3426608741283417,
+      "score_b": -0.46503719687461853,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-11174",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -2.2899975776672363,
+      "score_b": -2.339256763458252,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-11306",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -0.09595814347267151,
+      "score_b": -1.095078468322754,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-11382",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -1.0915066003799438,
+      "score_b": -1.4755284786224365,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-11451",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -1.1877681016921997,
+      "score_b": -1.2980425357818604,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-11701",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -1.7172856330871582,
+      "score_b": -1.9788841009140015,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-11768",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -1.0060673952102661,
+      "score_b": -1.9841288328170776,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-11870",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -1.416972041130066,
+      "score_b": -2.6638078689575195,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-11962",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -1.0917240381240845,
+      "score_b": -1.362471342086792,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-1206",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -1.0786869525909424,
+      "score_b": -1.2946938276290894,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-12158",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -0.7623412013053894,
+      "score_b": -1.5546752214431763,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-12260",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -0.31194576621055603,
+      "score_b": -0.7689375877380371,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-12390",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -0.09466364979743958,
+      "score_b": -1.264298677444458,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-12571",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -0.6221629977226257,
+      "score_b": -0.9058629274368286,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-1269",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -0.7123534083366394,
+      "score_b": -1.307289719581604,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-12847",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": -1.2322351932525635,
+      "score_b": -1.0068618059158325,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-12896",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -0.7077628374099731,
+      "score_b": -1.647553563117981,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-13081",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -1.795870304107666,
+      "score_b": -1.9167780876159668,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-13213",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": -1.234889030456543,
+      "score_b": -1.147354245185852,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-13348",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -0.8620741367340088,
+      "score_b": -0.9964038133621216,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-13410",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -1.2536234855651855,
+      "score_b": -1.7769826650619507,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-13469",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -0.19200417399406433,
+      "score_b": -1.7418428659439087,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-13648",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": -1.1369667053222656,
+      "score_b": -0.872893750667572,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-13768",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -1.879935622215271,
+      "score_b": -2.632166624069214,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-13837",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 0.1379949450492859,
+      "score_b": 0.07081788778305054,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-14036",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -1.2777429819107056,
+      "score_b": -1.7276273965835571,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-14119",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -0.10930746793746948,
+      "score_b": -0.8810211420059204,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-14291",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": -1.1981216669082642,
+      "score_b": -0.9359846115112305,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-14448",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": -4.5655975341796875,
+      "score_b": -1.4937684535980225,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-14510",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -1.4838788509368896,
+      "score_b": -1.7687897682189941,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-14601",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -0.43716058135032654,
+      "score_b": -0.955296516418457,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-14816",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": -1.2593151330947876,
+      "score_b": -0.9547915458679199,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-14982",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -0.8734343647956848,
+      "score_b": -0.9762448668479919,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-15039",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -0.44349393248558044,
+      "score_b": -2.441779613494873,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-15116",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -0.12455500662326813,
+      "score_b": -0.218084916472435,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-1565",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -1.3340650796890259,
+      "score_b": -1.9358646869659424,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-1649",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -0.5586979389190674,
+      "score_b": -0.7009270191192627,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-1789",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": -1.1559700965881348,
+      "score_b": -1.105344533920288,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-1837",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -1.215470790863037,
+      "score_b": -2.33355712890625,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-2077",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 2.2148826122283936,
+      "score_b": 1.1207128763198853,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-221",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -0.15794029831886292,
+      "score_b": -0.5153329372406006,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-2370",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -1.2417171001434326,
+      "score_b": -1.7594162225723267,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-2448",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -1.0125471353530884,
+      "score_b": -2.1718552112579346,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-2520",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -1.486883282661438,
+      "score_b": -2.349139451980591,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-2576",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -0.8332821130752563,
+      "score_b": -1.4158430099487305,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-2742",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -1.3442906141281128,
+      "score_b": -1.6875531673431396,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-2796",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 0.31211522221565247,
+      "score_b": -1.2040221691131592,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-2955",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 0.11280879378318787,
+      "score_b": -0.3786320686340332,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-3135",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -0.018706249073147774,
+      "score_b": -2.3480358123779297,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-3249",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": -0.9980829954147339,
+      "score_b": -0.9078816175460815,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-3392",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 1.0832895040512085,
+      "score_b": -3.1335604190826416,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-3520",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -0.193287655711174,
+      "score_b": -2.0043246746063232,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-3728",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -0.5088306665420532,
+      "score_b": -1.3757251501083374,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-3805",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -0.17555414140224457,
+      "score_b": -0.44995445013046265,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-391",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": -1.7270866632461548,
+      "score_b": -1.6645525693893433,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-401",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -0.5967509746551514,
+      "score_b": -1.1063716411590576,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-4049",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": -1.0434595346450806,
+      "score_b": -0.9352741241455078,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-4087",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -1.0687843561172485,
+      "score_b": -1.831944227218628,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-4172",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -0.9924522638320923,
+      "score_b": -1.1756387948989868,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-4283",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -0.7774525284767151,
+      "score_b": -1.0558465719223022,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-4409",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -0.0007161819376051426,
+      "score_b": -0.8161531090736389,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-4608",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 0.12963353097438812,
+      "score_b": -0.12244392931461334,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-4827",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 0.11044403910636902,
+      "score_b": -0.2181420773267746,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-4918",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -1.1561414003372192,
+      "score_b": -2.4213197231292725,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-5069",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -0.9989248514175415,
+      "score_b": -1.3949123620986938,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-5149",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -0.5638091564178467,
+      "score_b": -0.7910768389701843,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-5237",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 0.48637741804122925,
+      "score_b": 0.10673297941684723,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-5340",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -0.11235934495925903,
+      "score_b": -1.353267788887024,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-5521",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": -0.4700511395931244,
+      "score_b": -0.4614722430706024,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-5653",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -0.8210770487785339,
+      "score_b": -1.1828330755233765,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-5773",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -1.229559063911438,
+      "score_b": -1.8486524820327759,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-5829",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": -1.8012465238571167,
+      "score_b": -1.1308577060699463,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-5888",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -0.961217999458313,
+      "score_b": -1.2325387001037598,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-599",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -1.187296986579895,
+      "score_b": -1.7860801219940186,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-608",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -1.3036730289459229,
+      "score_b": -2.2591331005096436,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-6131",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": -1.810815453529358,
+      "score_b": -1.810760259628296,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-6299",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -2.9506025314331055,
+      "score_b": -4.82485818862915,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-6341",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -1.060835599899292,
+      "score_b": -1.5725531578063965,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-654",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 0.5890434980392456,
+      "score_b": 0.04526234790682793,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-6722",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": -1.7611572742462158,
+      "score_b": -1.3659378290176392,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-6775",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -0.5883063077926636,
+      "score_b": -2.0442721843719482,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-6940",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 2.567664861679077,
+      "score_b": -1.3193176984786987,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-7089",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": -0.3654087781906128,
+      "score_b": -0.3200506865978241,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-7249",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": -1.1094725131988525,
+      "score_b": -1.105854868888855,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-7358",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -0.6127745509147644,
+      "score_b": -0.7692011594772339,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-7557",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 0.32394668459892273,
+      "score_b": -1.3229074478149414,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-7812",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -1.4775383472442627,
+      "score_b": -2.4858322143554688,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-7943",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -0.8302639722824097,
+      "score_b": -1.2095283269882202,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-8015",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -0.18476493656635284,
+      "score_b": -0.9371101260185242,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-8128",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 0.1998225748538971,
+      "score_b": -1.5666872262954712,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-8276",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -0.9173569679260254,
+      "score_b": -1.279882788658142,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-848",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -1.3866097927093506,
+      "score_b": -1.4590845108032227,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-8627",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 0.73560631275177,
+      "score_b": -1.1535745859146118,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-872",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 0.3000880181789398,
+      "score_b": -0.4718678891658783,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-8806",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": -2.1534104347229004,
+      "score_b": -1.9898160696029663,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-8899",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -0.43024614453315735,
+      "score_b": -1.5353981256484985,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-9034",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 1.0291790962219238,
+      "score_b": 0.07625746726989746,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-9283",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -0.013691471889615059,
+      "score_b": -1.928627848625183,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-9622",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": -1.2755810022354126,
+      "score_b": -0.9407457113265991,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-9697",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -1.2689058780670166,
+      "score_b": -2.0168001651763916,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-9850",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -1.2826318740844727,
+      "score_b": -1.4860159158706665,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-9944",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -1.1706008911132812,
+      "score_b": -1.5093497037887573,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-9965",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": -1.5796486139297485,
+      "score_b": -1.4981465339660645,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "jailbreak-typo-Illegal_Activitiy-62",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": -0.5879166126251221,
+      "score_b": 1.5631276369094849,
+      "source": "jailbreak-typo-Illegal_Activitiy"
+    },
+    {
+      "id": "mathverse_1028",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -0.6889553070068359,
+      "score_b": -2.1313748359680176,
+      "source": ""
+    },
+    {
+      "id": "mathverse_1074",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": 0.4932152330875397,
+      "score_b": 0.5494036674499512,
+      "source": ""
+    },
+    {
+      "id": "mathverse_1148",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": -2.189081907272339,
+      "score_b": 0.02023630402982235,
+      "source": ""
+    },
+    {
+      "id": "mathverse_1244",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": -2.8404293060302734,
+      "score_b": -1.8022229671478271,
+      "source": ""
+    },
+    {
+      "id": "mathverse_134",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": -0.4814164638519287,
+      "score_b": -0.3678644001483917,
+      "source": ""
+    },
+    {
+      "id": "mathverse_1564",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 0.4973800778388977,
+      "score_b": -0.37988221645355225,
+      "source": ""
+    },
+    {
+      "id": "mathverse_1649",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -0.7292185425758362,
+      "score_b": -1.9388235807418823,
+      "source": ""
+    },
+    {
+      "id": "mathverse_1713",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": -0.18492916226387024,
+      "score_b": -0.13677996397018433,
+      "source": ""
+    },
+    {
+      "id": "mathverse_1719",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": -1.2260684967041016,
+      "score_b": -0.2505784332752228,
+      "source": ""
+    },
+    {
+      "id": "mathverse_1733-2",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 1.1292542219161987,
+      "score_b": -0.29132360219955444,
+      "source": ""
+    },
+    {
+      "id": "mathverse_1779",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -0.8636089563369751,
+      "score_b": -0.9060032367706299,
+      "source": ""
+    },
+    {
+      "id": "mathverse_1824",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": 0.2551875710487366,
+      "score_b": 0.6495020985603333,
+      "source": ""
+    },
+    {
+      "id": "mathverse_1908",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -0.31278732419013977,
+      "score_b": -1.128279685974121,
+      "source": ""
+    },
+    {
+      "id": "mathverse_2013",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -0.7665159702301025,
+      "score_b": -0.9754831790924072,
+      "source": ""
+    },
+    {
+      "id": "mathverse_2049",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": -0.8752977848052979,
+      "score_b": -0.6199132204055786,
+      "source": ""
+    },
+    {
+      "id": "mathverse_2113-2",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 1.9975804090499878,
+      "score_b": 0.21427828073501587,
+      "source": ""
+    },
+    {
+      "id": "mathverse_2173",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": -0.3611127734184265,
+      "score_b": -0.3013251721858978,
+      "source": ""
+    },
+    {
+      "id": "mathverse_2319",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": -1.8970240354537964,
+      "score_b": -0.9073165059089661,
+      "source": ""
+    },
+    {
+      "id": "mathverse_2444",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -0.9930515885353088,
+      "score_b": -1.8864951133728027,
+      "source": ""
+    },
+    {
+      "id": "mathverse_2569-1",
+      "label": 1,
+      "prediction": 1,
+      "correct": true,
+      "score_a": -0.4483703672885895,
+      "score_b": 0.4065563976764679,
+      "source": ""
+    },
+    {
+      "id": "mathverse_2634",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -0.16079318523406982,
+      "score_b": -0.36592304706573486,
+      "source": ""
+    },
+    {
+      "id": "mathverse_2653-1",
+      "label": 1,
+      "prediction": 1,
+      "correct": true,
+      "score_a": -0.45962658524513245,
+      "score_b": -0.16596883535385132,
+      "source": ""
+    },
+    {
+      "id": "mathverse_2699",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": -1.3639112710952759,
+      "score_b": -1.0229262113571167,
+      "source": ""
+    },
+    {
+      "id": "mathverse_2803",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": 0.05779838189482689,
+      "score_b": 1.3308583498001099,
+      "source": ""
+    },
+    {
+      "id": "mathverse_2883",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 0.6392930746078491,
+      "score_b": -0.49096235632896423,
+      "source": ""
+    },
+    {
+      "id": "mathverse_3169",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": -1.788347601890564,
+      "score_b": -1.424209475517273,
+      "source": ""
+    },
+    {
+      "id": "mathverse_3239",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": -1.2068212032318115,
+      "score_b": 0.08949454873800278,
+      "source": ""
+    },
+    {
+      "id": "mathverse_3268",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": -1.2386012077331543,
+      "score_b": -1.1629102230072021,
+      "source": ""
+    },
+    {
+      "id": "mathverse_3324",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 0.07776536047458649,
+      "score_b": -0.06973308324813843,
+      "source": ""
+    },
+    {
+      "id": "mathverse_3388",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -0.9333419799804688,
+      "score_b": -1.6568074226379395,
+      "source": ""
+    },
+    {
+      "id": "mathverse_3423-2",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 0.35003891587257385,
+      "score_b": -0.7542470097541809,
+      "source": ""
+    },
+    {
+      "id": "mathverse_3473",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 0.25661924481391907,
+      "score_b": -0.9299126267433167,
+      "source": ""
+    },
+    {
+      "id": "mathverse_3504",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -0.7304367423057556,
+      "score_b": -0.780890703201294,
+      "source": ""
+    },
+    {
+      "id": "mathverse_3553",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -0.23514610528945923,
+      "score_b": -0.46470555663108826,
+      "source": ""
+    },
+    {
+      "id": "mathverse_3669",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -0.13369633257389069,
+      "score_b": -1.2750927209854126,
+      "source": ""
+    },
+    {
+      "id": "mathverse_3694",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -0.607467770576477,
+      "score_b": -0.742063581943512,
+      "source": ""
+    },
+    {
+      "id": "mathverse_3749-1",
+      "label": 1,
+      "prediction": 1,
+      "correct": true,
+      "score_a": -1.9079509973526,
+      "score_b": -1.1633104085922241,
+      "source": ""
+    },
+    {
+      "id": "mathverse_3783",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 0.38804829120635986,
+      "score_b": -2.0783326625823975,
+      "source": ""
+    },
+    {
+      "id": "mathverse_3828",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -0.924544632434845,
+      "score_b": -1.7033885717391968,
+      "source": ""
+    },
+    {
+      "id": "mathverse_488",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 0.7347137331962585,
+      "score_b": -1.0212059020996094,
+      "source": ""
+    },
+    {
+      "id": "mathverse_624",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 0.7811374664306641,
+      "score_b": -0.5897942185401917,
+      "source": ""
+    },
+    {
+      "id": "mathverse_888",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -0.15327903628349304,
+      "score_b": -0.28396445512771606,
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Accounting_312",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": -0.28175416588783264,
+      "score_b": 0.194184809923172,
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Art_35",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": -0.09404124319553375,
+      "score_b": 0.17573150992393494,
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Basic_Medical_Science_313",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 2.4056155681610107,
+      "score_b": 0.6275593638420105,
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Chemistry_240",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": -1.691050410270691,
+      "score_b": -0.3975268304347992,
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Chemistry_61",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": -0.07205623388290405,
+      "score_b": 1.9871999025344849,
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Clinical_Medicine_33",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": 1.1285330057144165,
+      "score_b": 2.1819398403167725,
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Computer_Science_123",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": -0.24572956562042236,
+      "score_b": 1.0616627931594849,
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Design_87",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -2.4892427921295166,
+      "score_b": -3.593755006790161,
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Economics_16",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 1.1493704319000244,
+      "score_b": -0.5592315196990967,
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Economics_225",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 1.0797127485275269,
+      "score_b": 1.0797127485275269,
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Electronics_172",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 0.3142299950122833,
+      "score_b": 0.3142299950122833,
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Electronics_67",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": 0.6211179494857788,
+      "score_b": 1.1618863344192505,
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Energy_and_Power_312",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -1.5073225498199463,
+      "score_b": -1.893693447113037,
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Finance_133",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": -0.41359227895736694,
+      "score_b": 1.7882773876190186,
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Finance_64",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 0.48630085587501526,
+      "score_b": 0.239516481757164,
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Geography_40",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 1.6303725242614746,
+      "score_b": -1.772408127784729,
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_History_170",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 1.210333228111267,
+      "score_b": 1.210333228111267,
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Literature_4",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": 2.929567575454712,
+      "score_b": 3.7876665592193604,
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Manage_140",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 1.1686632633209229,
+      "score_b": -0.6879575252532959,
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Marketing_161",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 2.4789235591888428,
+      "score_b": 2.4789235591888428,
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Materials_415",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": 0.19889329373836517,
+      "score_b": 0.44169318675994873,
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Math_341",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": -1.441103458404541,
+      "score_b": -1.196407675743103,
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Mechanical_Engineering_78",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -0.42600950598716736,
+      "score_b": -0.9242233633995056,
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Pharmacy_393",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": 1.2166192531585693,
+      "score_b": 1.8614678382873535,
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Public_Health_427",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": -0.19017456471920013,
+      "score_b": 1.365410327911377,
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_validation_Architecture_and_Engineering_20",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": -0.5864999294281006,
+      "score_b": 1.7281835079193115,
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_validation_Chemistry_6",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": -0.03936151787638664,
+      "score_b": 0.7123080492019653,
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_validation_Energy_and_Power_19",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -1.199005365371704,
+      "score_b": -1.2473143339157104,
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_validation_Finance_3",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -0.6218668222427368,
+      "score_b": -1.726993203163147,
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_validation_Literature_27",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": 2.4698917865753174,
+      "score_b": 3.952976942062378,
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_validation_Marketing_17",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -0.2778718173503876,
+      "score_b": -1.9035223722457886,
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_validation_Materials_25",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": 0.522375762462616,
+      "score_b": 1.16426420211792,
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_validation_Math_28",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 1.3858377933502197,
+      "score_b": 0.7795485854148865,
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_validation_Mechanical_Engineering_30",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": -1.5463404655456543,
+      "score_b": 0.25006136298179626,
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_validation_Pharmacy_22",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": -0.17958462238311768,
+      "score_b": 0.03262187913060188,
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_validation_Physics_11",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": -1.1564090251922607,
+      "score_b": -0.6357993483543396,
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_validation_Public_Health_1",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 1.8395289182662964,
+      "score_b": 1.088330626487732,
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_validation_Sociology_10",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": 1.8610304594039917,
+      "score_b": 3.585878610610962,
+      "source": ""
+    },
+    {
+      "id": "wildvision-battle-1030",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -1.0154194831848145,
+      "score_b": -1.0206050872802734,
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-1137",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": -1.1109280586242676,
+      "score_b": -0.8354630470275879,
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-1197",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -0.5216451287269592,
+      "score_b": -1.0473504066467285,
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-1228",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -1.7818841934204102,
+      "score_b": -2.316554307937622,
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-1286",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 0.7216843366622925,
+      "score_b": 0.2521286606788635,
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-1389",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 1.3880075216293335,
+      "score_b": 1.2560559511184692,
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-158",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": -4.599987030029297,
+      "score_b": -1.005357027053833,
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-1875",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": -2.2231245040893555,
+      "score_b": -2.138024091720581,
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-2061",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -2.1061034202575684,
+      "score_b": -2.703057050704956,
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-2225",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": -0.2013094127178192,
+      "score_b": 2.0327138900756836,
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-2332",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 1.5208706855773926,
+      "score_b": 1.5208706855773926,
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-2375",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 1.5644084215164185,
+      "score_b": 1.5644084215164185,
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-2430",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 0.9162689447402954,
+      "score_b": -0.48176702857017517,
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-2491",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": -3.1839470863342285,
+      "score_b": 0.5090714693069458,
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-2526",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 2.143871784210205,
+      "score_b": 1.0035454034805298,
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-2603",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 3.4251978397369385,
+      "score_b": 0.24169780313968658,
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-2641",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 1.7927557229995728,
+      "score_b": 0.16666467487812042,
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-2717",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": -0.1162886694073677,
+      "score_b": 0.13421720266342163,
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-2847",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": 1.639886498451233,
+      "score_b": 2.4804751873016357,
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-2910",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": 0.36270907521247864,
+      "score_b": 0.586355447769165,
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-3180",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": 0.14035984873771667,
+      "score_b": 1.1259424686431885,
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-3366",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -0.1396614909172058,
+      "score_b": -1.0236252546310425,
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-3540",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": 0.15376891195774078,
+      "score_b": 1.5956119298934937,
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-3645",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 2.141282320022583,
+      "score_b": -1.0335370302200317,
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-3728",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": 0.5843132734298706,
+      "score_b": 4.177282333374023,
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-3927",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 0.3407510817050934,
+      "score_b": -1.0751873254776,
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-4069",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 3.4321000576019287,
+      "score_b": 0.13635671138763428,
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-421",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 0.14604447782039642,
+      "score_b": -0.2970738112926483,
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-4352",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": -0.8981350064277649,
+      "score_b": 2.3077285289764404,
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-4453",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 2.7304880619049072,
+      "score_b": 0.8801583051681519,
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-4628",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 3.4513909816741943,
+      "score_b": 0.0389045812189579,
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-4820",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": -1.446317195892334,
+      "score_b": 0.5010414719581604,
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-4940",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": 0.934228777885437,
+      "score_b": 1.1903040409088135,
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-5096",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -0.5874709486961365,
+      "score_b": -1.9352567195892334,
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-522",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": -1.873913288116455,
+      "score_b": -1.9466058015823364,
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-542",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 3.4683425426483154,
+      "score_b": 2.339409589767456,
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-5666",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 1.0921854972839355,
+      "score_b": -1.1215190887451172,
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-5808",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 2.6615688800811768,
+      "score_b": 0.8849974870681763,
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-5890",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 0.9299734830856323,
+      "score_b": -1.7576664686203003,
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-6008",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": -0.9035278558731079,
+      "score_b": 0.981849730014801,
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-6179",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": -0.7774123549461365,
+      "score_b": 0.6182948350906372,
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-731",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "score_a": 3.0144529342651367,
+      "score_b": 4.713639259338379,
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-958",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "score_a": 1.3028805255889893,
+      "score_b": -1.2796958684921265,
+      "source": "wildvision-battle"
+    }
+  ]
+}

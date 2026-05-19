@@ -1,0 +1,31 @@
+# environments / cache
+.envs/
+__pycache__/
+*.pyc
+.cache/
+.vscode/
+
+# data
+data/raw/
+data/features/
+data/processed/
+data/processed_h4_12k/
+data/processed_h4_30k/
+data/processed_h4_30k_nodedup/
+data/processed_h4_debug/
+*.parquet
+*.jpg
+*.jpeg
+*.png
+
+# checkpoints / large artifacts
+outputs/
+*.pt
+*.pth
+*.safetensors
+*.bin
+
+# logs
+logs/
+*.log
+wandb/

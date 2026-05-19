@@ -1,0 +1,2572 @@
+{
+  "summary": {
+    "accuracy": 0.4967948717948718,
+    "num_examples": 312,
+    "parse_rate": 0.8269230769230769,
+    "by_source": {
+      "": {
+        "accuracy": 0.825,
+        "num_examples": 80
+      },
+      "COCO": {
+        "accuracy": 0.45454545454545453,
+        "num_examples": 11
+      },
+      "GQA": {
+        "accuracy": 0.3333333333333333,
+        "num_examples": 6
+      },
+      "Google-Landmark": {
+        "accuracy": 0.0,
+        "num_examples": 3
+      },
+      "LCS-558K": {
+        "accuracy": 0.5454545454545454,
+        "num_examples": 11
+      },
+      "OK-VQA": {
+        "accuracy": 0.2727272727272727,
+        "num_examples": 11
+      },
+      "POVID_preference_data_for_VLLMs": {
+        "accuracy": 0.35714285714285715,
+        "num_examples": 112
+      },
+      "TextVQA": {
+        "accuracy": 0.0,
+        "num_examples": 1
+      },
+      "VQAv2": {
+        "accuracy": 0.21428571428571427,
+        "num_examples": 14
+      },
+      "coco": {
+        "accuracy": 0.36363636363636365,
+        "num_examples": 11
+      },
+      "jailbreak-typo-Illegal_Activitiy": {
+        "accuracy": 0.0,
+        "num_examples": 1
+      },
+      "sharegpt4v-textvqa": {
+        "accuracy": 0.0,
+        "num_examples": 1
+      },
+      "sharegpt4v-web-celebrity": {
+        "accuracy": 0.0,
+        "num_examples": 2
+      },
+      "sharegpt4v-wikiart": {
+        "accuracy": 0.0,
+        "num_examples": 1
+      },
+      "vqav2": {
+        "accuracy": 1.0,
+        "num_examples": 4
+      },
+      "wildvision-battle": {
+        "accuracy": 0.5116279069767442,
+        "num_examples": 43
+      }
+    },
+    "method": "base_model_generative_judge"
+  },
+  "results": [
+    {
+      "id": "RLAIF-V-10273",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "COCO"
+    },
+    {
+      "id": "RLAIF-V-1169",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "LCS-558K"
+    },
+    {
+      "id": "RLAIF-V-12608",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "COCO"
+    },
+    {
+      "id": "RLAIF-V-13503",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "LCS-558K"
+    },
+    {
+      "id": "RLAIF-V-14901",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "Google-Landmark"
+    },
+    {
+      "id": "RLAIF-V-16047",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "GQA"
+    },
+    {
+      "id": "RLAIF-V-18017",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "GQA"
+    },
+    {
+      "id": "RLAIF-V-19755",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "OK-VQA"
+    },
+    {
+      "id": "RLAIF-V-21465",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "COCO"
+    },
+    {
+      "id": "RLAIF-V-21990",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "Google-Landmark"
+    },
+    {
+      "id": "RLAIF-V-23227",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "LCS-558K"
+    },
+    {
+      "id": "RLAIF-V-24227",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "VQAv2"
+    },
+    {
+      "id": "RLAIF-V-25610",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "Google-Landmark"
+    },
+    {
+      "id": "RLAIF-V-26419",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "OK-VQA"
+    },
+    {
+      "id": "RLAIF-V-276",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "TextVQA"
+    },
+    {
+      "id": "RLAIF-V-28739",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "OK-VQA"
+    },
+    {
+      "id": "RLAIF-V-30789",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "VQAv2"
+    },
+    {
+      "id": "RLAIF-V-32948",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "VQAv2"
+    },
+    {
+      "id": "RLAIF-V-33744",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "VQAv2"
+    },
+    {
+      "id": "RLAIF-V-34504",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "VQAv2"
+    },
+    {
+      "id": "RLAIF-V-36094",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "GQA"
+    },
+    {
+      "id": "RLAIF-V-38307",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "LCS-558K"
+    },
+    {
+      "id": "RLAIF-V-39505",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "GQA"
+    },
+    {
+      "id": "RLAIF-V-40207",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "COCO"
+    },
+    {
+      "id": "RLAIF-V-41172",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "VQAv2"
+    },
+    {
+      "id": "RLAIF-V-41506",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "sharegpt4v-wikiart"
+    },
+    {
+      "id": "RLAIF-V-42328",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "VQAv2"
+    },
+    {
+      "id": "RLAIF-V-43042",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "OK-VQA"
+    },
+    {
+      "id": "RLAIF-V-43353",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "VQAv2"
+    },
+    {
+      "id": "RLAIF-V-45467",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "VQAv2"
+    },
+    {
+      "id": "RLAIF-V-47135",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "VQAv2"
+    },
+    {
+      "id": "RLAIF-V-48893",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "OK-VQA"
+    },
+    {
+      "id": "RLAIF-V-5046",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "LCS-558K"
+    },
+    {
+      "id": "RLAIF-V-5193",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "OK-VQA"
+    },
+    {
+      "id": "RLAIF-V-53776",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "VQAv2"
+    },
+    {
+      "id": "RLAIF-V-55190",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "sharegpt4v-textvqa"
+    },
+    {
+      "id": "RLAIF-V-5903",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "COCO"
+    },
+    {
+      "id": "RLAIF-V-60589",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "VQAv2"
+    },
+    {
+      "id": "RLAIF-V-63127",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "COCO"
+    },
+    {
+      "id": "RLAIF-V-64297",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "OK-VQA"
+    },
+    {
+      "id": "RLAIF-V-66016",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "sharegpt4v-web-celebrity"
+    },
+    {
+      "id": "RLAIF-V-66231",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "LCS-558K"
+    },
+    {
+      "id": "RLAIF-V-6667",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "OK-VQA"
+    },
+    {
+      "id": "RLAIF-V-6786",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "GQA"
+    },
+    {
+      "id": "RLAIF-V-69648",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "OK-VQA"
+    },
+    {
+      "id": "RLAIF-V-70860",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "COCO"
+    },
+    {
+      "id": "RLAIF-V-72377",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "VQAv2"
+    },
+    {
+      "id": "RLAIF-V-73495",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "OK-VQA"
+    },
+    {
+      "id": "RLAIF-V-74583",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "LCS-558K"
+    },
+    {
+      "id": "RLAIF-V-74798",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "GQA"
+    },
+    {
+      "id": "RLAIF-V-75228",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "OK-VQA"
+    },
+    {
+      "id": "RLAIF-V-7589",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "LCS-558K"
+    },
+    {
+      "id": "RLAIF-V-76753",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "COCO"
+    },
+    {
+      "id": "RLAIF-V-7761",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "VQAv2"
+    },
+    {
+      "id": "RLAIF-V-78397",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "COCO"
+    },
+    {
+      "id": "RLAIF-V-79527",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "COCO"
+    },
+    {
+      "id": "RLAIF-V-81811",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "sharegpt4v-web-celebrity"
+    },
+    {
+      "id": "RLAIF-V-8497",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "COCO"
+    },
+    {
+      "id": "RLAIF-V-9480",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "LCS-558K"
+    },
+    {
+      "id": "RLHF-V-1175",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "vqav2"
+    },
+    {
+      "id": "RLHF-V-1533",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "LCS-558K"
+    },
+    {
+      "id": "RLHF-V-1713",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "coco"
+    },
+    {
+      "id": "RLHF-V-1787",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "coco"
+    },
+    {
+      "id": "RLHF-V-2136",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "coco"
+    },
+    {
+      "id": "RLHF-V-2231",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "coco"
+    },
+    {
+      "id": "RLHF-V-2445",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "coco"
+    },
+    {
+      "id": "RLHF-V-3096",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "vqav2"
+    },
+    {
+      "id": "RLHF-V-3340",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "vqav2"
+    },
+    {
+      "id": "RLHF-V-3857",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "coco"
+    },
+    {
+      "id": "RLHF-V-414",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "vqav2"
+    },
+    {
+      "id": "RLHF-V-4603",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "coco"
+    },
+    {
+      "id": "RLHF-V-4905",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "coco"
+    },
+    {
+      "id": "RLHF-V-5095",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "coco"
+    },
+    {
+      "id": "RLHF-V-5328",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "coco"
+    },
+    {
+      "id": "RLHF-V-5665",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "coco"
+    },
+    {
+      "id": "RLHF-V-957",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "LCS-558K"
+    },
+    {
+      "id": "hallucination_pair-10079",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-10205",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-1033",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-10374",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-10539",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-10638",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-10707",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-10862",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-10970",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-11036",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-11174",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-11306",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-11382",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-11451",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-11701",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-11768",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-11870",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-11962",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-1206",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-12158",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-12260",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-12390",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-12571",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-1269",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-12847",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-12896",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-13081",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-13213",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-13348",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-13410",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-13469",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-13648",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-13768",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-13837",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-14036",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-14119",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-14291",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-14448",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-14510",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-14601",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-14816",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-14982",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-15039",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-15116",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-1565",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-1649",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-1789",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-1837",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-2077",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-221",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-2370",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-2448",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-2520",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-2576",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-2742",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-2796",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-2955",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-3135",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-3249",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-3392",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-3520",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-3728",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-3805",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-391",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-401",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-4049",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-4087",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-4172",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-4283",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-4409",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-4608",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-4827",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-4918",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-5069",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-5149",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-5237",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-5340",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-5521",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-5653",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-5773",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-5829",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-5888",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-599",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-608",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-6131",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-6299",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-6341",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-654",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-6722",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-6775",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-6940",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-7089",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-7249",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-7358",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-7557",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-7812",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-7943",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-8015",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-8128",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-8276",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-848",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-8627",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-872",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-8806",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-8899",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-9034",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-9283",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-9622",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-9697",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-9850",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-9944",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-9965",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "jailbreak-typo-Illegal_Activitiy-62",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "jailbreak-typo-Illegal_Activitiy"
+    },
+    {
+      "id": "mathverse_1028",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": " > 7 4. Now,",
+      "source": ""
+    },
+    {
+      "id": "mathverse_1074",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": " the diagonal of the rectangle is the diameter",
+      "source": ""
+    },
+    {
+      "id": "mathverse_1148",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": " \\] \\[ m \\angle ",
+      "source": ""
+    },
+    {
+      "id": "mathverse_1244",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": " 66 = 360",
+      "source": ""
+    },
+    {
+      "id": "mathverse_134",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "6 meters. Therefore, the correct answer",
+      "source": ""
+    },
+    {
+      "id": "mathverse_1564",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": ".\n\nMy final answer is D.",
+      "source": ""
+    },
+    {
+      "id": "mathverse_1649",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "",
+      "source": ""
+    },
+    {
+      "id": "mathverse_1713",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": ""
+    },
+    {
+      "id": "mathverse_1719",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": ""
+    },
+    {
+      "id": "mathverse_1733-2",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": ""
+    },
+    {
+      "id": "mathverse_1779",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "30-60-90",
+      "source": ""
+    },
+    {
+      "id": "mathverse_1824",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": ""
+    },
+    {
+      "id": "mathverse_1908",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": " \\approx 49.11",
+      "source": ""
+    },
+    {
+      "id": "mathverse_2013",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": " the image, where the angle is ",
+      "source": ""
+    },
+    {
+      "id": "mathverse_2049",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "17 \\text{ mm} \\",
+      "source": ""
+    },
+    {
+      "id": "mathverse_2113-2",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "7860 km/h × ",
+      "source": ""
+    },
+    {
+      "id": "mathverse_2173",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "3^2} = 1 \\",
+      "source": ""
+    },
+    {
+      "id": "mathverse_2319",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": ""
+    },
+    {
+      "id": "mathverse_2444",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": ""
+    },
+    {
+      "id": "mathverse_2569-1",
+      "label": 1,
+      "prediction": 0,
+      "correct": false,
+      "raw_output": "4}{20} = 0",
+      "source": ""
+    },
+    {
+      "id": "mathverse_2634",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": ""
+    },
+    {
+      "id": "mathverse_2653-1",
+      "label": 1,
+      "prediction": 1,
+      "correct": true,
+      "raw_output": "B",
+      "source": ""
+    },
+    {
+      "id": "mathverse_2699",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": ""
+    },
+    {
+      "id": "mathverse_2803",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": ""
+    },
+    {
+      "id": "mathverse_2883",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "ities, the polynomial can be written as",
+      "source": ""
+    },
+    {
+      "id": "mathverse_3169",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": " point occurs at x = 0,",
+      "source": ""
+    },
+    {
+      "id": "mathverse_3239",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": " cm})^3 \\] \\[",
+      "source": ""
+    },
+    {
+      "id": "mathverse_3268",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": " 34185.0",
+      "source": ""
+    },
+    {
+      "id": "mathverse_3324",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "14159 \\] \\",
+      "source": ""
+    },
+    {
+      "id": "mathverse_3388",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": " trigonometric relationship**: In right triangle",
+      "source": ""
+    },
+    {
+      "id": "mathverse_3423-2",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": ""
+    },
+    {
+      "id": "mathverse_3473",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "To calculate the volume of the solid,",
+      "source": ""
+    },
+    {
+      "id": "mathverse_3504",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": " = 48 \\) cm\\",
+      "source": ""
+    },
+    {
+      "id": "mathverse_3553",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": " of the cone = 4 cm,",
+      "source": ""
+    },
+    {
+      "id": "mathverse_3669",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": " Radius (r) = 4 /",
+      "source": ""
+    },
+    {
+      "id": "mathverse_3694",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "15 cm - Width = 9",
+      "source": ""
+    },
+    {
+      "id": "mathverse_3749-1",
+      "label": 1,
+      "prediction": 0,
+      "correct": false,
+      "raw_output": " the values into the equation: \\[",
+      "source": ""
+    },
+    {
+      "id": "mathverse_3783",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": " correct answer is C.\n\nResponse B:\n",
+      "source": ""
+    },
+    {
+      "id": "mathverse_3828",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "°. 4. Since x and",
+      "source": ""
+    },
+    {
+      "id": "mathverse_488",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": ""
+    },
+    {
+      "id": "mathverse_624",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": " of the entire circle, not just the",
+      "source": ""
+    },
+    {
+      "id": "mathverse_888",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "), so: \\[ \\frac{",
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Accounting_312",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "500 D. 5,",
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Art_35",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Basic_Medical_Science_313",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Chemistry_240",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": ". In vessel 1, there are",
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Chemistry_61",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": " they are not bonded together. (c",
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Clinical_Medicine_33",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Computer_Science_123",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": " The possible order in which the key values",
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Design_87",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Economics_16",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": " producing red and white socks. Let's",
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Economics_225",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": ": 30,000",
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Electronics_172",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": " triangle wave with a peak value of \\(",
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Electronics_67",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": " resistor. Let's break it down step",
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Energy_and_Power_312",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": " \\text{ m/s}^2",
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Finance_133",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": " rate of 30%, the NP",
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Finance_64",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": " ROE is: ROE = Net",
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Geography_40",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_History_170",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": " Seven Years' War resulted in a push",
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Literature_4",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Manage_140",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": " March with the top five stores in May",
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Marketing_161",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": " 65 | 354",
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Materials_415",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": " \\exp\\left(\\frac{-Q",
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Math_341",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": " the spanning tree if it does not form",
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Mechanical_Engineering_78",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": " the gravitational constant, M is the mass",
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Pharmacy_393",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Public_Health_427",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_validation_Architecture_and_Engineering_20",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "ankment, we can use the given",
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_validation_Chemistry_6",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_validation_Energy_and_Power_19",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": " \\, \\text{Pa} \\",
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_validation_Finance_3",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": " 14.4865",
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_validation_Literature_27",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_validation_Marketing_17",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "9, 16.01",
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_validation_Materials_25",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "14 * ρc 0",
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_validation_Math_28",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_validation_Mechanical_Engineering_30",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_validation_Pharmacy_22",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": " by comparing experiments 1 and 2",
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_validation_Physics_11",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "times t = 600 \\",
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_validation_Public_Health_1",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": " is a measure of the slope of the",
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_validation_Sociology_10",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": ""
+    },
+    {
+      "id": "wildvision-battle-1030",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "exercise\": \"Bench Press\", \"",
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-1137",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-1197",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-1228",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-1286",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-1389",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-158",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-1875",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-2061",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-2225",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-2332",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-2375",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "ptomAbnormality\": \"Ellipsoid",
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-2430",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-2491",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-2526",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-2603",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-2641",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-2717",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": " program, such as creating a new document",
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-2847",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-2910",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-3180",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-3366",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-3540",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": " been captured with a neutral color balance.",
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-3645",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-3728",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-3927",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": " the corridor, there is a white,",
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-4069",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-421",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-4352",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-4453",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-4628",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-4820",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-4940",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-5096",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-522",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-542",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-5666",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": " the platform provides tools and resources for medical",
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-5808",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": " of traditional and modern artistic techniques, resulting",
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-5890",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": " Warehousing: includes \"BigQuery\"",
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-6008",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-6179",
+      "label": 0,
+      "prediction": 0,
+      "correct": true,
+      "raw_output": "A",
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-731",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-958",
+      "label": 0,
+      "prediction": 1,
+      "correct": false,
+      "raw_output": "B",
+      "source": "wildvision-battle"
+    }
+  ]
+}

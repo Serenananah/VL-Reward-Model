@@ -1,0 +1,193 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{fontspec}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{hyperref}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{}
+\usepackage{xcolor}
+\usepackage{amsmath}
+
+\setmainfont{STHeiti}
+\XeTeXlinebreaklocale "zh"
+\XeTeXlinebreakskip = 0pt plus 1pt
+\hypersetup{hidelinks}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.55em}
+\newcommand{\code}[1]{\path{#1}}
+\newcommand{\pct}[1]{#1\%}
+
+\title{VL Reward Model 实验报告}
+\author{csh \quad / \quad Codex assisted}
+\date{2026-05-19}
+
+\begin{document}
+\maketitle
+
+\section{任务与提交目标}
+
+本次考核要求以 Qwen2-VL 或 InternVL2.5-VL 系列模型为 base model，在模型后端添加 score head，将其训练为多模态 reward model，并在 VLRewardBench 上报告：
+\begin{itemize}
+  \item base model 在 VLRewardBench 上的分数 \(\mathrm{Score}_{base}\)；
+  \item 训练后的 reward model 权重；
+  \item reward model 在 VLRewardBench 上的分数 \(\mathrm{Score}_{reward}\)；
+  \item 数据处理、训练参数、实验发现与问题分析。
+\end{itemize}
+训练数据唯一硬约束是不使用 VLRewardBench 数据训练。本实验严格将 VLRewardBench 仅用于最终评测。
+
+\section{环境与代码}
+
+服务器工作目录为 \code{/data4/ljl/csh/vl_reward_work}，本轮训练和评测均限制一次最多使用 4 张 RTX 4090 24GB GPU。主要环境如下：
+
+\begin{longtable}{p{0.24\linewidth}p{0.68\linewidth}}
+\toprule
+项目 & 配置 \\
+\midrule
+InternVL 环境 & \code{/data3/ljl/miniconda3/envs/internvl/bin/python} \\
+Qwen 环境 & \code{/data3/ljl/miniconda3/envs/qwen25vl/bin/python} \\
+InternVL base & \code{/data2/ljl/csh/pretrained_model/InternVL2_5-2B} \\
+Qwen base & \code{/data2/ljl/csh/pretrained_model/Qwen2-VL-7B-Instruct} \\
+InternVL 脚本 & \code{/data4/ljl/csh/vl_reward_work/scripts/internvl_reward.py} \\
+Qwen 脚本 & \code{/data4/ljl/csh/vl_reward_work/scripts/qwen2vl_reward.py} \\
+\bottomrule
+\end{longtable}
+
+相对原始尝试，代码层面主要补充了三类能力：第一，修复并扩展 InternVL 的数据准备和 reward forward，避免训练时产生完整 vocab logits；第二，为 Qwen2-VL 增加手写 LoRA、score head 训练与评测脚本，因为当前服务器 Qwen 环境没有可直接使用的 peft/bitsandbytes；第三，补齐两个 base model 的 generative judge 评测入口，并用 4 卡分片评测后合并。
+
+\section{数据处理}
+
+训练数据来自两部分：
+\begin{itemize}
+  \item RLHF-V 已处理偏好对：训练 2,533 条，验证 281 条；
+  \item HuggingFaceH4 \code{rlaif-v_formatted} 全量 13 个 parquet shard，共 78,975 条原始样本。
+\end{itemize}
+
+最初只使用了 H4 的少量 shard，并且在 prepare 阶段按 query 文本去重。后来检查发现，同一个 query 可能对应不同图像或不同偏好对，按 query 去重会误删大量有效样本，因此重新下载 13 个 shard，并改为不按 query 去重。最终构造：
+
+\begin{longtable}{p{0.48\linewidth}r}
+\toprule
+文件 & 样本数 \\
+\midrule
+\code{data/processed_h4_30k_nodedup/train_pairs_h4.jsonl} & 29,000 \\
+\code{data/processed_h4_30k_nodedup/val_pairs_h4.jsonl} & 1,000 \\
+\code{data/processed_h4_30k_nodedup/train_pairs_mix.jsonl} & 31,533 \\
+\code{data/processed_h4_30k_nodedup/val_pairs_mix.jsonl} & 1,281 \\
+\code{data/processed/vlrewardbench_eval.jsonl} & 1,247 \\
+\bottomrule
+\end{longtable}
+
+为了避免评测泄漏，数据准备时使用 VLRewardBench 的 query 集合做过滤；VLRewardBench 只参与最终 eval，不进入训练或验证。
+
+\section{方法}
+
+\subsection{Base judge}
+
+\(\mathrm{Score}_{base}\) 使用原始 base model 直接做 A/B judge：输入图像、问题、Response A、Response B，要求模型只输出 A 或 B，然后和 VLRewardBench label 比较。这个分数不是训练得到的 reward head 分数，而是原模型的 generative judging 能力。
+
+Qwen2-VL 的初始 base judge 评测中发现超长回答会截断掉末尾的 ``Answer with exactly one letter'' 指令，使模型续写答案而不是判 A/B。因此最终 Qwen base 采用更严格的设置：每个候选回答最多保留 1,200 字符，\code{max_length=1536}，以保证最终生成提示保留，parse rate 提升到 98.9\%。未保护版本 52.13\% 只作为诊断结果，不作为主 \(\mathrm{Score}_{base}\)。
+
+\subsection{Reward model}
+
+Reward model 对每个候选回答独立打分，而不是同时看 A/B 后生成选择。结构为：
+\[
+  s(x, y) = \mathrm{Head}(h_{\mathrm{last}}(x, y)),
+\]
+其中 \(x\) 是图像和问题，\(y\) 是候选回答，\(h_{\mathrm{last}}\) 是最后一个有效 token 的隐藏状态，Head 为 LayerNorm + Linear scalar head。训练目标为 pairwise Bradley--Terry loss：
+\[
+  \mathcal{L}=-\log \sigma(s_{chosen}-s_{rejected}).
+\]
+
+两个模型均冻结原 backbone，仅训练 LoRA adapter 和 scalar score head。这样可以在 4090 24GB 上完成训练，也便于保存和提交权重。
+
+\section{训练配置}
+
+\begin{longtable}{p{0.20\linewidth}p{0.36\linewidth}p{0.36\linewidth}}
+\toprule
+配置 & InternVL2.5-2B Reward & Qwen2-VL-7B Reward \\
+\midrule
+训练集 & H4 30k no-dedup + RLHF-V mix & H4 30k no-dedup + RLHF-V mix \\
+训练样本 & 31,533 & 31,533 \\
+验证样本 & 1,281 & 1,281 \\
+epoch & 1 & 1 \\
+GPU & 4 \(\times\) RTX 4090 24GB & 4 \(\times\) RTX 4090 24GB \\
+max length & 1536 & 768 \\
+图像设置 & \code{max_num=4} & \code{min_pixels=50176, max_pixels=200704} \\
+LoRA rank / alpha & 16 / 32 & 8 / 16 \\
+LoRA 层 & language layer 8 起 & language layer 20 起 \\
+优化器 & AdamW & AdamW \\
+梯度累积 & 8 & 8 \\
+训练时间 & 3,201.7 s & 2,360.8 s \\
+\bottomrule
+\end{longtable}
+
+Qwen2-VL-7B 参数更大，为保证单卡 24GB 可训练，采用更短文本长度、较低 LoRA rank，并只在靠后的 8 层语言层上加 LoRA。InternVL2.5-2B 更轻，因此使用更长上下文和更高 rank。
+
+\section{实验过程与发现}
+
+实验不是一次成功的，主要经历了以下几步：
+
+\begin{longtable}{p{0.32\linewidth}p{0.18\linewidth}p{0.42\linewidth}}
+\toprule
+实验 & VLRewardBench & 观察 \\
+\midrule
+InternVL frozen score head & 46.99\% & 只训练头部表达力不足，低于 base judge。 \\
+InternVL 小规模 H4/RLHF LoRA & 54.61\% & LoRA 有效，但数据量和清洗不够。 \\
+InternVL base-judge pseudo & 59.98\% & 蒸馏 base judge 有提升，但仍低于强 base judge。 \\
+InternVL H4 30k no-dedup LoRA & 71.21\% & 下载全量 H4 shard、修复去重、提高 rank 后显著提升。 \\
+Qwen H4 30k no-dedup LoRA & 66.56\% & 手写 LoRA + score head 后，reward 分数明显高于 base judge。 \\
+\bottomrule
+\end{longtable}
+
+最关键的两个工程问题是：
+\begin{itemize}
+  \item InternVL 直接调用完整模型 forward 会产生 vocab logits，显存占用很高；改成只取 hidden states、不走 lm head 后，4 卡训练稳定。
+  \item Qwen 环境缺少常用 LoRA 依赖，因此实现了轻量 \code{LoRALinear} 包装，只替换目标 language projection 层，避免引入额外安装风险。
+\end{itemize}
+
+\section{最终结果}
+
+\begin{longtable}{p{0.30\linewidth}p{0.20\linewidth}p{0.20\linewidth}p{0.18\linewidth}}
+\toprule
+模型 & \(\mathrm{Score}_{base}\) & \(\mathrm{Score}_{reward}\) & 提升 \\
+\midrule
+Qwen2-VL-7B-Instruct & 43.14\% & 66.56\% & +23.42 \\
+InternVL2.5-2B & 64.80\% & 71.21\% & +6.42 \\
+\bottomrule
+\end{longtable}
+
+其中 base score 均为原始模型直接 A/B judge，不训练 score head；reward score 为训练后的 scalar reward model 对 A/B 分别打分后的准确率。两个 reward model 都超过了各自 base judge，其中 InternVL2.5-2B reward 也高于考核文档给出的实验室预先结果 64.8\%，Qwen2-VL-7B reward 高于文档中的 51.2\% 参考结果。
+
+训练日志中的验证集表现如下：
+
+\begin{longtable}{p{0.30\linewidth}r r r r}
+\toprule
+模型 & train acc & val acc & val margin & step \\
+\midrule
+InternVL2.5-2B Reward & 68.89\% & 74.24\% & 1.1585 & 986 \\
+Qwen2-VL-7B Reward & 61.34\% & 65.42\% & 0.3812 & 986 \\
+\bottomrule
+\end{longtable}
+
+\section{权重与结果文件}
+
+\begin{longtable}{p{0.24\linewidth}p{0.68\linewidth}}
+\toprule
+项目 & 路径 \\
+\midrule
+InternVL best checkpoint & \code{/data4/ljl/csh/vl_reward_work/outputs/internvl25_2b_lora_reward_h4mix30k_r16_l8_len1536_no_logits_4g/reward_lora_best.pt} \\
+Qwen best checkpoint & \code{/data4/ljl/csh/vl_reward_work/outputs/qwen2vl7b_lora_reward_h4mix30k_r8_l20_len768_4g/reward_lora_best.pt} \\
+InternVL base eval & \code{/data4/ljl/csh/vl_reward_work/results/base_judge_internvl25_2b_max4_rerun_20260519.json} \\
+Qwen base eval & \code{/data4/ljl/csh/vl_reward_work/results/base_judge_qwen2vl7b_len1536_clip1200_rerun_20260519.json} \\
+InternVL reward eval & \code{/data4/ljl/csh/vl_reward_work/results/internvl25_2b_lora_reward_h4mix30k_r16_l8_len1536_no_logits_4g_vlrewardbench.json} \\
+Qwen reward eval & \code{/data4/ljl/csh/vl_reward_work/results/qwen2vl7b_lora_reward_h4mix30k_r8_l20_len768_4g_vlrewardbench.json} \\
+\bottomrule
+\end{longtable}
+
+\section{结论与后续改进}
+
+本实验完成了 Qwen2-VL-7B 和 InternVL2.5-2B 两个 backbone 的 base 评测、reward model 训练、权重保存与 VLRewardBench 评测。最终 InternVL reward 达到 71.21\%，Qwen reward 达到 66.56\%。从实验过程看，数据规模、去重策略、是否避免完整 lm head logits、LoRA 覆盖层数和上下文长度是影响结果的关键因素。
+
+后续如果继续提升，优先方向是：对 Qwen 使用更长训练上下文和更大 LoRA rank；引入更强的 hard negative mining；对不同来源数据做重加权，尤其针对 wildvision-battle 这类开放式偏好数据；同时尝试把 base generative judge 的解释蒸馏为 reward 模型的辅助训练信号，而不是只蒸馏最终 A/B 标签。
+
+\end{document}

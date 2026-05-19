@@ -1,0 +1,2892 @@
+{
+  "summary": {
+    "accuracy": 0.6891025641025641,
+    "num_examples": 312,
+    "by_source": {
+      "": {
+        "accuracy": 0.5569620253164557,
+        "num_examples": 79
+      },
+      "COCO": {
+        "accuracy": 0.5,
+        "num_examples": 16
+      },
+      "GQA": {
+        "accuracy": 0.8888888888888888,
+        "num_examples": 9
+      },
+      "LCS-558K": {
+        "accuracy": 0.75,
+        "num_examples": 12
+      },
+      "LRVInstruction": {
+        "accuracy": 0.0,
+        "num_examples": 1
+      },
+      "OCR-VQA": {
+        "accuracy": 1.0,
+        "num_examples": 2
+      },
+      "OK-VQA": {
+        "accuracy": 0.8333333333333334,
+        "num_examples": 6
+      },
+      "POVID_preference_data_for_VLLMs": {
+        "accuracy": 0.8928571428571429,
+        "num_examples": 112
+      },
+      "TextVQA": {
+        "accuracy": 1.0,
+        "num_examples": 2
+      },
+      "VQAv2": {
+        "accuracy": 0.42857142857142855,
+        "num_examples": 7
+      },
+      "coco": {
+        "accuracy": 0.9,
+        "num_examples": 10
+      },
+      "jailbreak-typo-HateSpeech": {
+        "accuracy": 0.0,
+        "num_examples": 1
+      },
+      "jailbreak-typo-Physical_Harm": {
+        "accuracy": 0.0,
+        "num_examples": 1
+      },
+      "sharegpt4v-web-celebrity": {
+        "accuracy": 1.0,
+        "num_examples": 1
+      },
+      "sharegpt4v-web-landmark": {
+        "accuracy": 0.75,
+        "num_examples": 4
+      },
+      "vqav2": {
+        "accuracy": 0.6666666666666666,
+        "num_examples": 6
+      },
+      "wildvision-battle": {
+        "accuracy": 0.3953488372093023,
+        "num_examples": 43
+      }
+    },
+    "checkpoint": "outputs/qwen2vl7b_lora_reward_h4mix30k_r8_l20_len768_4g/reward_lora_best.pt",
+    "checkpoint_best": {
+      "val_acc": 0.6541764246682279,
+      "epoch": 1,
+      "step": 986
+    }
+  },
+  "results": [
+    {
+      "id": "LRVInstruction-000000007746",
+      "pred": 0,
+      "label": 1,
+      "correct": false,
+      "score_a": -0.347573846578598,
+      "score_b": -0.6989029049873352,
+      "source": "LRVInstruction"
+    },
+    {
+      "id": "RLAIF-V-1158",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.4662540853023529,
+      "score_b": -1.0530765056610107,
+      "source": "sharegpt4v-web-landmark"
+    },
+    {
+      "id": "RLAIF-V-12529",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.22686663269996643,
+      "score_b": 0.022716380655765533,
+      "source": "GQA"
+    },
+    {
+      "id": "RLAIF-V-13487",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.8071854114532471,
+      "score_b": 0.6895152926445007,
+      "source": "LCS-558K"
+    },
+    {
+      "id": "RLAIF-V-14419",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 1.2103136777877808,
+      "score_b": 0.41801849007606506,
+      "source": "GQA"
+    },
+    {
+      "id": "RLAIF-V-16020",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 1.3808107376098633,
+      "score_b": 0.38943400979042053,
+      "source": "OCR-VQA"
+    },
+    {
+      "id": "RLAIF-V-16742",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.509395182132721,
+      "score_b": -0.6304739117622375,
+      "source": "LCS-558K"
+    },
+    {
+      "id": "RLAIF-V-18797",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": -0.2933439314365387,
+      "score_b": -0.3799872398376465,
+      "source": "OK-VQA"
+    },
+    {
+      "id": "RLAIF-V-20511",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": 1.895995020866394,
+      "score_b": 2.0139856338500977,
+      "source": "VQAv2"
+    },
+    {
+      "id": "RLAIF-V-2190",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.9723728895187378,
+      "score_b": -0.1439472734928131,
+      "source": "VQAv2"
+    },
+    {
+      "id": "RLAIF-V-23213",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.6425686478614807,
+      "score_b": -0.07166915386915207,
+      "source": "GQA"
+    },
+    {
+      "id": "RLAIF-V-24135",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": 1.718827724456787,
+      "score_b": 1.9523812532424927,
+      "source": "VQAv2"
+    },
+    {
+      "id": "RLAIF-V-25309",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": 0.8904985785484314,
+      "score_b": 1.1974457502365112,
+      "source": "COCO"
+    },
+    {
+      "id": "RLAIF-V-26263",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": 1.1001259088516235,
+      "score_b": 1.2326332330703735,
+      "source": "LCS-558K"
+    },
+    {
+      "id": "RLAIF-V-2735",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.2540365755558014,
+      "score_b": -0.8826996684074402,
+      "source": "sharegpt4v-web-celebrity"
+    },
+    {
+      "id": "RLAIF-V-28331",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": 1.7010250091552734,
+      "score_b": 2.3364644050598145,
+      "source": "COCO"
+    },
+    {
+      "id": "RLAIF-V-30485",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 2.8728623390197754,
+      "score_b": 1.4537798166275024,
+      "source": "OK-VQA"
+    },
+    {
+      "id": "RLAIF-V-3259",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.36279019713401794,
+      "score_b": 0.2531387507915497,
+      "source": "GQA"
+    },
+    {
+      "id": "RLAIF-V-33624",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 1.7703245878219604,
+      "score_b": 0.17741823196411133,
+      "source": "GQA"
+    },
+    {
+      "id": "RLAIF-V-34267",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": 1.2973195314407349,
+      "score_b": 1.679269552230835,
+      "source": "LCS-558K"
+    },
+    {
+      "id": "RLAIF-V-35665",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 1.3706470727920532,
+      "score_b": 0.5561878085136414,
+      "source": "TextVQA"
+    },
+    {
+      "id": "RLAIF-V-36549",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 1.3945801258087158,
+      "score_b": 1.3890941143035889,
+      "source": "TextVQA"
+    },
+    {
+      "id": "RLAIF-V-39464",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": 0.8264333009719849,
+      "score_b": 1.2666946649551392,
+      "source": "sharegpt4v-web-landmark"
+    },
+    {
+      "id": "RLAIF-V-39969",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": -0.2776895761489868,
+      "score_b": 0.5154678225517273,
+      "source": "COCO"
+    },
+    {
+      "id": "RLAIF-V-40849",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.16969618201255798,
+      "score_b": -2.7459068298339844,
+      "source": "OK-VQA"
+    },
+    {
+      "id": "RLAIF-V-41480",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 1.1527866125106812,
+      "score_b": 0.7666465640068054,
+      "source": "COCO"
+    },
+    {
+      "id": "RLAIF-V-42319",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": 1.1020466089248657,
+      "score_b": 1.300916075706482,
+      "source": "LCS-558K"
+    },
+    {
+      "id": "RLAIF-V-42889",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.9184781908988953,
+      "score_b": 0.4977128803730011,
+      "source": "COCO"
+    },
+    {
+      "id": "RLAIF-V-43198",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.4155026376247406,
+      "score_b": -1.6141877174377441,
+      "source": "VQAv2"
+    },
+    {
+      "id": "RLAIF-V-44447",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 1.2476376295089722,
+      "score_b": 0.8695581555366516,
+      "source": "COCO"
+    },
+    {
+      "id": "RLAIF-V-46569",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 1.3453055620193481,
+      "score_b": 0.3492337763309479,
+      "source": "OK-VQA"
+    },
+    {
+      "id": "RLAIF-V-48127",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": 1.2256574630737305,
+      "score_b": 1.699252724647522,
+      "source": "COCO"
+    },
+    {
+      "id": "RLAIF-V-49459",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 1.5524789094924927,
+      "score_b": 0.44200778007507324,
+      "source": "sharegpt4v-web-landmark"
+    },
+    {
+      "id": "RLAIF-V-51755",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": 0.1505529284477234,
+      "score_b": 0.720304548740387,
+      "source": "GQA"
+    },
+    {
+      "id": "RLAIF-V-53523",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": 1.4315282106399536,
+      "score_b": 1.6639848947525024,
+      "source": "COCO"
+    },
+    {
+      "id": "RLAIF-V-54659",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": 0.9348706603050232,
+      "score_b": 1.1261488199234009,
+      "source": "COCO"
+    },
+    {
+      "id": "RLAIF-V-58995",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 1.1058968305587769,
+      "score_b": -0.6663827300071716,
+      "source": "GQA"
+    },
+    {
+      "id": "RLAIF-V-60191",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 1.68816077709198,
+      "score_b": 1.5183435678482056,
+      "source": "COCO"
+    },
+    {
+      "id": "RLAIF-V-62304",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.6363056302070618,
+      "score_b": 0.5638607144355774,
+      "source": "LCS-558K"
+    },
+    {
+      "id": "RLAIF-V-64074",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.6076343655586243,
+      "score_b": -0.131675124168396,
+      "source": "LCS-558K"
+    },
+    {
+      "id": "RLAIF-V-65823",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": -1.6737948656082153,
+      "score_b": -1.8699631690979004,
+      "source": "OCR-VQA"
+    },
+    {
+      "id": "RLAIF-V-66218",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 2.123370409011841,
+      "score_b": 1.5931811332702637,
+      "source": "COCO"
+    },
+    {
+      "id": "RLAIF-V-66585",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 1.3532721996307373,
+      "score_b": 1.1805837154388428,
+      "source": "COCO"
+    },
+    {
+      "id": "RLAIF-V-67853",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.3484313189983368,
+      "score_b": -0.19081103801727295,
+      "source": "GQA"
+    },
+    {
+      "id": "RLAIF-V-68618",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": 1.1459859609603882,
+      "score_b": 1.2294844388961792,
+      "source": "COCO"
+    },
+    {
+      "id": "RLAIF-V-70391",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.4205107092857361,
+      "score_b": -0.14822065830230713,
+      "source": "VQAv2"
+    },
+    {
+      "id": "RLAIF-V-71738",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 1.0834060907363892,
+      "score_b": 0.34277966618537903,
+      "source": "LCS-558K"
+    },
+    {
+      "id": "RLAIF-V-73293",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": 1.0365890264511108,
+      "score_b": 1.4775723218917847,
+      "source": "OK-VQA"
+    },
+    {
+      "id": "RLAIF-V-74533",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": 0.4035930633544922,
+      "score_b": 0.8406112194061279,
+      "source": "VQAv2"
+    },
+    {
+      "id": "RLAIF-V-74768",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.38413748145103455,
+      "score_b": 0.3406725227832794,
+      "source": "COCO"
+    },
+    {
+      "id": "RLAIF-V-75171",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.9630197882652283,
+      "score_b": 0.04268492013216019,
+      "source": "LCS-558K"
+    },
+    {
+      "id": "RLAIF-V-75807",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": -0.937871515750885,
+      "score_b": -1.2078856229782104,
+      "source": "LCS-558K"
+    },
+    {
+      "id": "RLAIF-V-76752",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": 0.7805390954017639,
+      "score_b": 0.9390209317207336,
+      "source": "COCO"
+    },
+    {
+      "id": "RLAIF-V-77217",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.7424516677856445,
+      "score_b": 0.25962382555007935,
+      "source": "LCS-558K"
+    },
+    {
+      "id": "RLAIF-V-78335",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": -0.014717601239681244,
+      "score_b": -0.7620713114738464,
+      "source": "GQA"
+    },
+    {
+      "id": "RLAIF-V-7945",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": -0.6728543639183044,
+      "score_b": -0.957598865032196,
+      "source": "COCO"
+    },
+    {
+      "id": "RLAIF-V-80746",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.5285621285438538,
+      "score_b": -0.4771231710910797,
+      "source": "OK-VQA"
+    },
+    {
+      "id": "RLAIF-V-82592",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.9884435534477234,
+      "score_b": 0.3647690713405609,
+      "source": "sharegpt4v-web-landmark"
+    },
+    {
+      "id": "RLAIF-V-9416",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": 0.07155945152044296,
+      "score_b": 0.7580719590187073,
+      "source": "VQAv2"
+    },
+    {
+      "id": "RLHF-V-1117",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": -0.9455170035362244,
+      "score_b": -0.6148976683616638,
+      "source": "vqav2"
+    },
+    {
+      "id": "RLHF-V-1424",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 1.8400706052780151,
+      "score_b": -0.7099119424819946,
+      "source": "vqav2"
+    },
+    {
+      "id": "RLHF-V-1704",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": -0.3614082932472229,
+      "score_b": -1.1408787965774536,
+      "source": "coco"
+    },
+    {
+      "id": "RLHF-V-1770",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.23215511441230774,
+      "score_b": -2.333548069000244,
+      "source": "coco"
+    },
+    {
+      "id": "RLHF-V-2088",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": -0.455512136220932,
+      "score_b": -0.4498268961906433,
+      "source": "coco"
+    },
+    {
+      "id": "RLHF-V-223",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.5079912543296814,
+      "score_b": -0.2916383743286133,
+      "source": "LCS-558K"
+    },
+    {
+      "id": "RLHF-V-2344",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.9646556377410889,
+      "score_b": -1.6728798151016235,
+      "source": "coco"
+    },
+    {
+      "id": "RLHF-V-2943",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": 1.6718233823776245,
+      "score_b": 1.6866146326065063,
+      "source": "vqav2"
+    },
+    {
+      "id": "RLHF-V-3339",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 1.427456259727478,
+      "score_b": 0.9992507100105286,
+      "source": "vqav2"
+    },
+    {
+      "id": "RLHF-V-3808",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 1.5021841526031494,
+      "score_b": -0.05287846177816391,
+      "source": "coco"
+    },
+    {
+      "id": "RLHF-V-3957",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 1.4426600933074951,
+      "score_b": 1.1803722381591797,
+      "source": "coco"
+    },
+    {
+      "id": "RLHF-V-4588",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 1.8721610307693481,
+      "score_b": 0.8456736207008362,
+      "source": "coco"
+    },
+    {
+      "id": "RLHF-V-4884",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 1.6211954355239868,
+      "score_b": -1.5652177333831787,
+      "source": "coco"
+    },
+    {
+      "id": "RLHF-V-5002",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 2.3337063789367676,
+      "score_b": 1.8299599885940552,
+      "source": "coco"
+    },
+    {
+      "id": "RLHF-V-525",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.45578277111053467,
+      "score_b": -0.3998234272003174,
+      "source": "vqav2"
+    },
+    {
+      "id": "RLHF-V-5624",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.5303375720977783,
+      "score_b": -0.03914932161569595,
+      "source": "coco"
+    },
+    {
+      "id": "RLHF-V-912",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.10698770731687546,
+      "score_b": -0.7838526368141174,
+      "source": "vqav2"
+    },
+    {
+      "id": "hallucination_pair-10042",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": -0.7912824153900146,
+      "score_b": -1.2122989892959595,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-10159",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": -0.7659682631492615,
+      "score_b": -0.6761360764503479,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-10306",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.444112092256546,
+      "score_b": 0.261404424905777,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-10364",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.6220154166221619,
+      "score_b": -0.5470959544181824,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-10466",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 1.5549708604812622,
+      "score_b": 1.1128603219985962,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-10611",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.5380549430847168,
+      "score_b": -0.00471816211938858,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-10706",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.9890093207359314,
+      "score_b": 0.2364480197429657,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-10840",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": 0.507103443145752,
+      "score_b": 0.5970852375030518,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-10917",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 1.4185312986373901,
+      "score_b": 1.313585877418518,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-11002",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.8835693001747131,
+      "score_b": 0.6416370272636414,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-11138",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.5050528645515442,
+      "score_b": -0.948845624923706,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-11280",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.2202853262424469,
+      "score_b": 0.1796618103981018,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-1136",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 1.1523033380508423,
+      "score_b": 0.6842395663261414,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-1143",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 1.3808317184448242,
+      "score_b": 0.04433207958936691,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-11620",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.9324650764465332,
+      "score_b": 0.3208119571208954,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-11729",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 1.4033102989196777,
+      "score_b": -0.613843560218811,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-1185",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.9776250720024109,
+      "score_b": 0.46487826108932495,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-11934",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 1.5153359174728394,
+      "score_b": 0.7640323042869568,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-1205",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": -0.9220661520957947,
+      "score_b": -1.4424043893814087,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-12157",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.7776842713356018,
+      "score_b": 0.6217616200447083,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-12229",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 1.1005536317825317,
+      "score_b": 0.13218867778778076,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-12375",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.7490323185920715,
+      "score_b": -0.0390496626496315,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-12527",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 1.3583850860595703,
+      "score_b": -0.2923711836338043,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-12657",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 1.0691940784454346,
+      "score_b": 0.9643481373786926,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-12788",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": -0.39948439598083496,
+      "score_b": -0.6148723363876343,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-12892",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.2971077561378479,
+      "score_b": -0.6920173764228821,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-13079",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.5705667734146118,
+      "score_b": -1.26982581615448,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-13200",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.8895808458328247,
+      "score_b": 0.29712244868278503,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-13337",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.9068564772605896,
+      "score_b": 0.7346683144569397,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-13399",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.6926509737968445,
+      "score_b": 0.3839966654777527,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-13462",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 1.263914704322815,
+      "score_b": 1.0654138326644897,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-13623",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.7649620771408081,
+      "score_b": 0.2544768154621124,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-13736",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.44389382004737854,
+      "score_b": -0.07402168959379196,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-13827",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 1.5056222677230835,
+      "score_b": 0.1039109006524086,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-14023",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.25457996129989624,
+      "score_b": 0.2537909746170044,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-14112",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.8954134583473206,
+      "score_b": 0.7821531891822815,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-1428",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": 1.678085207939148,
+      "score_b": 1.6874758005142212,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-14345",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 1.2372499704360962,
+      "score_b": 1.049237847328186,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-14495",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 1.2112988233566284,
+      "score_b": 0.9071795344352722,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-14592",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": 0.29472824931144714,
+      "score_b": 0.3509170114994049,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-1481",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 1.4423547983169556,
+      "score_b": 0.9046768546104431,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-14966",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.8306841254234314,
+      "score_b": 0.7009341716766357,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-15018",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.6186301112174988,
+      "score_b": -0.4686698019504547,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-15079",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 1.4663636684417725,
+      "score_b": 1.1409353017807007,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-15173",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": -1.4322880506515503,
+      "score_b": -0.7664003372192383,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-16029",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.24896714091300964,
+      "score_b": -0.46613332629203796,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-175",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.614048421382904,
+      "score_b": 0.48392704129219055,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-1829",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 1.008959412574768,
+      "score_b": 0.2339162528514862,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-2061",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": -0.950123131275177,
+      "score_b": -0.3369743227958679,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-2200",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": 0.852191686630249,
+      "score_b": 0.9592757821083069,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-233",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.614175021648407,
+      "score_b": 0.16530480980873108,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-2446",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.7758404612541199,
+      "score_b": 0.4836473762989044,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-2492",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.964421808719635,
+      "score_b": 0.21859508752822876,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-2568",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.5706080794334412,
+      "score_b": 0.30942437052726746,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-2703",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.4032396376132965,
+      "score_b": 0.39152926206588745,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-2771",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 1.0178481340408325,
+      "score_b": 0.6288894414901733,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-2933",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 1.059626817703247,
+      "score_b": 0.5544514656066895,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-3106",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 1.0233306884765625,
+      "score_b": 0.5199681520462036,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-3223",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.9065293669700623,
+      "score_b": 0.7378820776939392,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-3317",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.3628014028072357,
+      "score_b": 0.14199495315551758,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-3513",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 1.0474661588668823,
+      "score_b": 0.8664701581001282,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-3717",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.89112389087677,
+      "score_b": 0.6384535431861877,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-3794",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.7086207270622253,
+      "score_b": 0.6985277533531189,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-3869",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.7587935328483582,
+      "score_b": 0.17021679878234863,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-3962",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 1.0174049139022827,
+      "score_b": 0.1332559883594513,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-4040",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.9017204642295837,
+      "score_b": -0.6997250318527222,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-4085",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 1.3830163478851318,
+      "score_b": 1.2572377920150757,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-4152",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.9183394312858582,
+      "score_b": 0.11425457149744034,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-4229",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": -0.6214827299118042,
+      "score_b": -0.5221527814865112,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-4386",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 1.5880428552627563,
+      "score_b": 1.08157479763031,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-4563",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": -1.1460086107254028,
+      "score_b": -3.892017364501953,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-4790",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 1.1404675245285034,
+      "score_b": -0.35447511076927185,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-4890",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.9136514663696289,
+      "score_b": 0.7695461511611938,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-505",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.7141801118850708,
+      "score_b": 0.5393386483192444,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-5103",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": -1.2574851512908936,
+      "score_b": -1.7516436576843262,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-5223",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": -0.0059943124651908875,
+      "score_b": -0.2173294723033905,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-5293",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.4152819812297821,
+      "score_b": -0.7804369926452637,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-5506",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.5341469049453735,
+      "score_b": 0.2702675461769104,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-565",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 1.3824418783187866,
+      "score_b": 0.4565679430961609,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-5762",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 1.243108868598938,
+      "score_b": 1.0045400857925415,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-5824",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.6214150786399841,
+      "score_b": 0.15129297971725464,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-5878",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 1.4072495698928833,
+      "score_b": 1.2761765718460083,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-5958",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.9417872428894043,
+      "score_b": 0.30347907543182373,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-6068",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": 0.7945325970649719,
+      "score_b": 0.9538056254386902,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-6107",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.9362909197807312,
+      "score_b": 0.5304223895072937,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-6276",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.20570555329322815,
+      "score_b": -0.04462456703186035,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-6340",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 1.0700291395187378,
+      "score_b": 0.6016319394111633,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-6430",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.845068097114563,
+      "score_b": 0.6521589159965515,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-6705",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 1.5643678903579712,
+      "score_b": 1.3003748655319214,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-6771",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.6561854481697083,
+      "score_b": 0.4374295473098755,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-6877",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.8028497099876404,
+      "score_b": 0.5861343145370483,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-7018",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 1.2373219728469849,
+      "score_b": 1.0588345527648926,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-7210",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.4370054602622986,
+      "score_b": 0.2818692922592163,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-7333",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 1.4687939882278442,
+      "score_b": 1.239989161491394,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-7497",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 1.2572243213653564,
+      "score_b": 0.29121384024620056,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-7670",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 1.2327960729599,
+      "score_b": 0.9939631819725037,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-7893",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": -1.0461173057556152,
+      "score_b": -0.9539022445678711,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-7997",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 1.1210674047470093,
+      "score_b": 0.42676377296447754,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-811",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 1.1699739694595337,
+      "score_b": 0.8172789216041565,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-8228",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 1.1408601999282837,
+      "score_b": 0.193646639585495,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-8432",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 1.0242863893508911,
+      "score_b": -0.1435607671737671,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-859",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.08835340291261673,
+      "score_b": -0.3062486946582794,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-8705",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": 0.9551196694374084,
+      "score_b": 0.9661859273910522,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-8799",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.801315426826477,
+      "score_b": 0.74830561876297,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-8872",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": 0.5996512770652771,
+      "score_b": 0.7905991673469543,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-9032",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 1.0007400512695312,
+      "score_b": 0.2756367325782776,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-9262",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.6000545024871826,
+      "score_b": 0.4732431173324585,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-9614",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.32235631346702576,
+      "score_b": -0.4638808071613312,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-9690",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.9045787453651428,
+      "score_b": -0.5685309171676636,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-984",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.5792543292045593,
+      "score_b": 0.25462040305137634,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-9938",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.8911429047584534,
+      "score_b": 0.7249694466590881,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "hallucination_pair-9955",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 1.0192289352416992,
+      "score_b": 0.773101270198822,
+      "source": "POVID_preference_data_for_VLLMs"
+    },
+    {
+      "id": "jailbreak-typo-HateSpeech-70",
+      "pred": 0,
+      "label": 1,
+      "correct": false,
+      "score_a": 2.099094867706299,
+      "score_b": -1.5797125101089478,
+      "source": "jailbreak-typo-HateSpeech"
+    },
+    {
+      "id": "jailbreak-typo-Physical_Harm-15",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": -1.1459259986877441,
+      "score_b": -0.05875440686941147,
+      "source": "jailbreak-typo-Physical_Harm"
+    },
+    {
+      "id": "mathverse_1063-2",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": -0.15444868803024292,
+      "score_b": -0.6869654059410095,
+      "source": ""
+    },
+    {
+      "id": "mathverse_1108-2",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": -0.15985819697380066,
+      "score_b": -0.18117254972457886,
+      "source": ""
+    },
+    {
+      "id": "mathverse_1233",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": -0.8145665526390076,
+      "score_b": -0.0631672814488411,
+      "source": ""
+    },
+    {
+      "id": "mathverse_1323",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": -0.3380911648273468,
+      "score_b": -0.7940924167633057,
+      "source": ""
+    },
+    {
+      "id": "mathverse_1494",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": -0.5151249766349792,
+      "score_b": -0.5674818754196167,
+      "source": ""
+    },
+    {
+      "id": "mathverse_1649",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": -0.5400297045707703,
+      "score_b": -0.6473686099052429,
+      "source": ""
+    },
+    {
+      "id": "mathverse_1704",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": -0.011046387255191803,
+      "score_b": 0.01835576444864273,
+      "source": ""
+    },
+    {
+      "id": "mathverse_1719",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": -0.29554662108421326,
+      "score_b": 0.10466257482767105,
+      "source": ""
+    },
+    {
+      "id": "mathverse_1733-1",
+      "pred": 0,
+      "label": 1,
+      "correct": false,
+      "score_a": -0.2030557096004486,
+      "score_b": -0.5124163031578064,
+      "source": ""
+    },
+    {
+      "id": "mathverse_1778",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": -0.35100266337394714,
+      "score_b": -0.7112939357757568,
+      "source": ""
+    },
+    {
+      "id": "mathverse_1819",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": -0.19430756568908691,
+      "score_b": -0.06159137934446335,
+      "source": ""
+    },
+    {
+      "id": "mathverse_1898",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": -0.4702375829219818,
+      "score_b": -0.49395713210105896,
+      "source": ""
+    },
+    {
+      "id": "mathverse_2013",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": -0.0524778738617897,
+      "score_b": 0.20000365376472473,
+      "source": ""
+    },
+    {
+      "id": "mathverse_2044",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": -0.05240360647439957,
+      "score_b": 0.09513046592473984,
+      "source": ""
+    },
+    {
+      "id": "mathverse_2113-1",
+      "pred": 1,
+      "label": 1,
+      "correct": true,
+      "score_a": -0.5048556923866272,
+      "score_b": 0.02793080359697342,
+      "source": ""
+    },
+    {
+      "id": "mathverse_2168",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.41520604491233826,
+      "score_b": 0.004005052149295807,
+      "source": ""
+    },
+    {
+      "id": "mathverse_2289",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.19394385814666748,
+      "score_b": 0.13893169164657593,
+      "source": ""
+    },
+    {
+      "id": "mathverse_2419",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.056064195930957794,
+      "score_b": 0.01205233484506607,
+      "source": ""
+    },
+    {
+      "id": "mathverse_2563",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": -0.09650596231222153,
+      "score_b": -0.4564160108566284,
+      "source": ""
+    },
+    {
+      "id": "mathverse_2633",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": -0.411939412355423,
+      "score_b": -0.5954156517982483,
+      "source": ""
+    },
+    {
+      "id": "mathverse_2648-2",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": -0.2026800811290741,
+      "score_b": -0.8859243988990784,
+      "source": ""
+    },
+    {
+      "id": "mathverse_2679",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": -0.8972005248069763,
+      "score_b": -0.3361431360244751,
+      "source": ""
+    },
+    {
+      "id": "mathverse_2788",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": -0.3200628161430359,
+      "score_b": 0.316757470369339,
+      "source": ""
+    },
+    {
+      "id": "mathverse_2878",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.5338186621665955,
+      "score_b": 0.15099108219146729,
+      "source": ""
+    },
+    {
+      "id": "mathverse_3033",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.5941711068153381,
+      "score_b": 0.5606915354728699,
+      "source": ""
+    },
+    {
+      "id": "mathverse_3229",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": 0.07652664929628372,
+      "score_b": 0.16743120551109314,
+      "source": ""
+    },
+    {
+      "id": "mathverse_3254",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": -0.3618992269039154,
+      "score_b": 0.059180714190006256,
+      "source": ""
+    },
+    {
+      "id": "mathverse_328",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": -0.28812965750694275,
+      "score_b": -0.19411951303482056,
+      "source": ""
+    },
+    {
+      "id": "mathverse_3358",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": 0.11411725729703903,
+      "score_b": 0.3072337508201599,
+      "source": ""
+    },
+    {
+      "id": "mathverse_3423-1",
+      "pred": 0,
+      "label": 1,
+      "correct": false,
+      "score_a": 0.08896655589342117,
+      "score_b": -0.5644941926002502,
+      "source": ""
+    },
+    {
+      "id": "mathverse_3463",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.16013818979263306,
+      "score_b": -0.37983015179634094,
+      "source": ""
+    },
+    {
+      "id": "mathverse_3489-2",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.4705265462398529,
+      "score_b": 0.14300483465194702,
+      "source": ""
+    },
+    {
+      "id": "mathverse_3544",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.05710095912218094,
+      "score_b": -0.3320852816104889,
+      "source": ""
+    },
+    {
+      "id": "mathverse_3624",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": -0.31672796607017517,
+      "score_b": 0.20312464237213135,
+      "source": ""
+    },
+    {
+      "id": "mathverse_3693",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": -0.4595911204814911,
+      "score_b": -0.7297987341880798,
+      "source": ""
+    },
+    {
+      "id": "mathverse_3743",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": -0.5195728540420532,
+      "score_b": -0.3898200988769531,
+      "source": ""
+    },
+    {
+      "id": "mathverse_3778",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": -0.5555642247200012,
+      "score_b": -1.17484450340271,
+      "source": ""
+    },
+    {
+      "id": "mathverse_3823",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": -0.34994134306907654,
+      "score_b": 0.2706373929977417,
+      "source": ""
+    },
+    {
+      "id": "mathverse_464",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.06119973212480545,
+      "score_b": -0.43113234639167786,
+      "source": ""
+    },
+    {
+      "id": "mathverse_614",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": -0.4226014018058777,
+      "score_b": -0.5995948314666748,
+      "source": ""
+    },
+    {
+      "id": "mathverse_704",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.0025694742798805237,
+      "score_b": -0.2844553589820862,
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Accounting_170",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": -0.2647670805454254,
+      "score_b": -0.15198025107383728,
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Art_24",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": -1.654335856437683,
+      "score_b": -1.1712391376495361,
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Basic_Medical_Science_106",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.14677569270133972,
+      "score_b": -0.0466134175658226,
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Biology_328-2",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": -0.6704243421554565,
+      "score_b": -0.4071379601955414,
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Chemistry_524",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": 0.8256756067276001,
+      "score_b": 0.8816904425621033,
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Clinical_Medicine_260",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": 0.4489728808403015,
+      "score_b": 0.6665351986885071,
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Clinical_Medicine_95",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": -0.2446030080318451,
+      "score_b": -0.08429350703954697,
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Design_48",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": -0.6363316178321838,
+      "score_b": -1.2914409637451172,
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Economics_108",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.40255868434906006,
+      "score_b": 0.10051766782999039,
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Economics_216",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.732545018196106,
+      "score_b": -1.3574007749557495,
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Electronics_159",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": -0.2605156898498535,
+      "score_b": 0.5419401526451111,
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Electronics_6",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.6958603858947754,
+      "score_b": 0.17172494530677795,
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Energy_and_Power_220",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": -0.9380996823310852,
+      "score_b": -0.8888580799102783,
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Finance_10",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": -0.42009395360946655,
+      "score_b": -1.3494542837142944,
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Finance_241",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": -0.16550230979919434,
+      "score_b": -0.044846534729003906,
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Finance_96",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.1627732217311859,
+      "score_b": 0.1627732217311859,
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_History_168",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.6907392144203186,
+      "score_b": 0.19831731915473938,
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Literature_36",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.16954579949378967,
+      "score_b": -0.1331557035446167,
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Manage_104",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": -0.47944387793540955,
+      "score_b": -0.48453488945961,
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Marketing_150-2",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": -0.17809221148490906,
+      "score_b": -0.2785310447216034,
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Marketing_72",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": -0.31275489926338196,
+      "score_b": -0.8693583607673645,
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Math_18",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.08390925079584122,
+      "score_b": -0.11482589691877365,
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Mechanical_Engineering_7",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": 0.3130989074707031,
+      "score_b": 0.717488706111908,
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Pharmacy_19",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": -0.04066334664821625,
+      "score_b": 0.32076695561408997,
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_test_Public_Health_189",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": -0.5325561761856079,
+      "score_b": 0.16554740071296692,
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_validation_Agriculture_6",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": -1.3724509477615356,
+      "score_b": -0.309563547372818,
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_validation_Chemistry_17",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": -0.37299251556396484,
+      "score_b": 0.006832193583250046,
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_validation_Energy_and_Power_16",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.6833600401878357,
+      "score_b": -0.47717997431755066,
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_validation_Finance_15",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.09245134145021439,
+      "score_b": -0.38578560948371887,
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_validation_Literature_13",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.14055171608924866,
+      "score_b": 0.07188837975263596,
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_validation_Marketing_1",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.1655849814414978,
+      "score_b": 0.012774467468261719,
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_validation_Marketing_3",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": -0.6214908361434937,
+      "score_b": -0.3323535919189453,
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_validation_Materials_8",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": -0.32760611176490784,
+      "score_b": -0.8642096519470215,
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_validation_Mechanical_Engineering_3",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": -0.3677997589111328,
+      "score_b": -0.11598802357912064,
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_validation_Music_1",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": 0.757739782333374,
+      "score_b": 0.8532705307006836,
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_validation_Physics_1",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": -0.45181116461753845,
+      "score_b": -0.514763355255127,
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_validation_Psychology_13",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": -0.1668878197669983,
+      "score_b": -0.194728821516037,
+      "source": ""
+    },
+    {
+      "id": "mmmu_pro_validation_Public_Health_8",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": -0.1937388777732849,
+      "score_b": 0.0034775510430336,
+      "source": ""
+    },
+    {
+      "id": "wildvision-battle-1009",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": 0.3990143835544586,
+      "score_b": 1.5306613445281982,
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-1134",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.05141959339380264,
+      "score_b": -1.3500440120697021,
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-1195",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 2.0368900299072266,
+      "score_b": 1.5763579607009888,
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-1227",
+      "pred": 0,
+      "label": 1,
+      "correct": false,
+      "score_a": 1.5855032205581665,
+      "score_b": -2.157306432723999,
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-1248",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": -2.190990924835205,
+      "score_b": -0.04666382074356079,
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-1324",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": -1.0724819898605347,
+      "score_b": 0.43118521571159363,
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-1551",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.06445077806711197,
+      "score_b": -0.702343761920929,
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-1759",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 1.661557912826538,
+      "score_b": -0.07697200030088425,
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-2052",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": -0.446310430765152,
+      "score_b": 0.3591213822364807,
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-2188",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": 1.0178356170654297,
+      "score_b": 1.3274803161621094,
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-2262",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.5482068657875061,
+      "score_b": 0.008877374231815338,
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-2371",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": -0.6936692595481873,
+      "score_b": -0.5826429724693298,
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-2429",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": -1.0657655000686646,
+      "score_b": 0.07650671154260635,
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-2490",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": -2.49719500541687,
+      "score_b": 2.5107297897338867,
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-2522",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 1.0916287899017334,
+      "score_b": 0.8817389011383057,
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-2589",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": -0.9273582100868225,
+      "score_b": -1.0646244287490845,
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-2628",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 1.7567654848098755,
+      "score_b": 1.5989261865615845,
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-270",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": -0.4499065577983856,
+      "score_b": 1.0152651071548462,
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-2770",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.8990391492843628,
+      "score_b": 0.36518046259880066,
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-2900",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": -0.28554707765579224,
+      "score_b": -0.5706202387809753,
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-3165",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": 0.932682991027832,
+      "score_b": 0.9404683113098145,
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-3312",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": -0.11922154575586319,
+      "score_b": 0.006472148001194,
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-3443",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 1.0857218503952026,
+      "score_b": 0.9914485812187195,
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-364",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": 0.7686158418655396,
+      "score_b": 1.2695633172988892,
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-3711",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": 1.2065943479537964,
+      "score_b": 1.2534011602401733,
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-3815",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": -1.2347279787063599,
+      "score_b": -1.1463745832443237,
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-3973",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": -1.5316152572631836,
+      "score_b": 1.1233168840408325,
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-4123",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": -2.014700174331665,
+      "score_b": 0.7401124835014343,
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-431",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": -4.1782026290893555,
+      "score_b": -0.6573683619499207,
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-4415",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": -1.655210256576538,
+      "score_b": -0.9796585440635681,
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-4575",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": 0.1765325665473938,
+      "score_b": 1.812123417854309,
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-4797",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": -0.2640908360481262,
+      "score_b": -0.6648110747337341,
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-492",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": -1.100974202156067,
+      "score_b": -0.6966610550880432,
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-5075",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 1.281406283378601,
+      "score_b": 0.41826537251472473,
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-5167",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": 0.08576054126024246,
+      "score_b": 0.8790333271026611,
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-5344",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.16915461421012878,
+      "score_b": -0.15828382968902588,
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-5539",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 1.7879165410995483,
+      "score_b": 1.0952928066253662,
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-5772",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": 0.12707123160362244,
+      "score_b": 1.2409424781799316,
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-5850",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": -0.9975864291191101,
+      "score_b": -1.0020484924316406,
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-5993",
+      "pred": 0,
+      "label": 0,
+      "correct": true,
+      "score_a": 0.9811332821846008,
+      "score_b": 0.6968702673912048,
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-615",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": -0.28071120381355286,
+      "score_b": -0.12661747634410858,
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-654",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": 0.6781753897666931,
+      "score_b": 0.9461598992347717,
+      "source": "wildvision-battle"
+    },
+    {
+      "id": "wildvision-battle-952",
+      "pred": 1,
+      "label": 0,
+      "correct": false,
+      "score_a": -1.6328028440475464,
+      "score_b": -0.21847987174987793,
+      "source": "wildvision-battle"
+    }
+  ]
+}

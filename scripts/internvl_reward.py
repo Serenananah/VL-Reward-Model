@@ -1,0 +1,1664 @@
+#!/usr/bin/env python3
+import argparse
+import ast
+import glob
+import hashlib
+import json
+import math
+import os
+import random
+import re
+import time
+import contextlib
+from io import BytesIO
+from pathlib import Path
+
+import pandas as pd
+import torch
+import torch.distributed as dist
+import torchvision.transforms as T
+from PIL import Image
+from torch import nn
+from torch.nn import functional as F
+from torch.nn.parallel import DistributedDataParallel as DDP
+from torch.utils.data.distributed import DistributedSampler
+from torchvision.transforms.functional import InterpolationMode
+from tqdm import tqdm
+from transformers import AutoModel, AutoTokenizer
+
+
+IMAGENET_MEAN = (0.485, 0.456, 0.406)
+IMAGENET_STD = (0.229, 0.224, 0.225)
+IMG_START_TOKEN = "<img>"
+IMG_END_TOKEN = "</img>"
+IMG_CONTEXT_TOKEN = "<IMG_CONTEXT>"
+
+
+def read_jsonl(path):
+    with open(path, "r", encoding="utf-8") as f:
+        for line in f:
+            line = line.strip()
+            if line:
+                yield json.loads(line)
+
+
+def write_jsonl(path, rows):
+    path = Path(path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with open(path, "w", encoding="utf-8") as f:
+        for row in rows:
+            f.write(json.dumps(row, ensure_ascii=False) + "\n")
+
+
+def clean_text(text):
+    return re.sub(r"\s+", " ", str(text or "")).strip()
+
+
+def text_key(text):
+    return clean_text(text).lower()
+
+
+def safe_name(value):
+    value = re.sub(r"[^A-Za-z0-9_.-]+", "_", str(value))
+    return value[:120] or hashlib.md5(str(value).encode()).hexdigest()
+
+
+def parse_pref_text(value):
+    if isinstance(value, dict):
+        return value
+    if value is None:
+        return {}
+    if not isinstance(value, str):
+        return {}
+    value = value.strip()
+    for parser in (json.loads, ast.literal_eval):
+        try:
+            parsed = parser(value)
+            if isinstance(parsed, dict):
+                return parsed
+        except Exception:
+            pass
+    return {}
+
+
+def image_from_value(value):
+    if isinstance(value, Image.Image):
+        return value.convert("RGB")
+    if hasattr(value, "tolist") and not isinstance(value, (str, bytes, bytearray, dict)):
+        return image_from_value(value.tolist())
+    if isinstance(value, (list, tuple)):
+        if not value:
+            raise ValueError("empty image list")
+        return image_from_value(value[0])
+    if isinstance(value, dict):
+        raw = value.get("bytes")
+        if raw:
+            return Image.open(BytesIO(raw)).convert("RGB")
+        path = value.get("path")
+        if path and os.path.exists(path):
+            return Image.open(path).convert("RGB")
+    if isinstance(value, (bytes, bytearray)):
+        return Image.open(BytesIO(value)).convert("RGB")
+    if isinstance(value, str) and os.path.exists(value):
+        return Image.open(value).convert("RGB")
+    raise ValueError(f"Unsupported image value: {type(value)}")
+
+
+def save_image(value, path):
+    path = Path(path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    if path.exists() and path.stat().st_size > 0:
+        return str(path)
+    image = image_from_value(value)
+    image.save(path, format="JPEG", quality=92)
+    return str(path)
+
+
+def build_transform(input_size):
+    return T.Compose(
+        [
+            T.Lambda(lambda img: img.convert("RGB") if img.mode != "RGB" else img),
+            T.Resize((input_size, input_size), interpolation=InterpolationMode.BICUBIC),
+            T.ToTensor(),
+            T.Normalize(mean=IMAGENET_MEAN, std=IMAGENET_STD),
+        ]
+    )
+
+
+def find_closest_aspect_ratio(aspect_ratio, target_ratios, width, height, image_size):
+    best_ratio_diff = float("inf")
+    best_ratio = (1, 1)
+    area = width * height
+    for ratio in target_ratios:
+        target_aspect_ratio = ratio[0] / ratio[1]
+        ratio_diff = abs(aspect_ratio - target_aspect_ratio)
+        if ratio_diff < best_ratio_diff:
+            best_ratio_diff = ratio_diff
+            best_ratio = ratio
+        elif ratio_diff == best_ratio_diff:
+            if area > 0.5 * image_size * image_size * ratio[0] * ratio[1]:
+                best_ratio = ratio
+    return best_ratio
+
+
+def dynamic_preprocess(image, min_num=1, max_num=6, image_size=448, use_thumbnail=True):
+    orig_width, orig_height = image.size
+    aspect_ratio = orig_width / orig_height
+    target_ratios = set(
+        (i, j)
+        for n in range(min_num, max_num + 1)
+        for i in range(1, n + 1)
+        for j in range(1, n + 1)
+        if i * j <= max_num and i * j >= min_num
+    )
+    target_ratios = sorted(target_ratios, key=lambda x: x[0] * x[1])
+    target_aspect_ratio = find_closest_aspect_ratio(
+        aspect_ratio, target_ratios, orig_width, orig_height, image_size
+    )
+    target_width = image_size * target_aspect_ratio[0]
+    target_height = image_size * target_aspect_ratio[1]
+    blocks = target_aspect_ratio[0] * target_aspect_ratio[1]
+    resized_img = image.resize((target_width, target_height))
+    processed_images = []
+    for i in range(blocks):
+        box = (
+            (i % (target_width // image_size)) * image_size,
+            (i // (target_width // image_size)) * image_size,
+            ((i % (target_width // image_size)) + 1) * image_size,
+            ((i // (target_width // image_size)) + 1) * image_size,
+        )
+        processed_images.append(resized_img.crop(box))
+    if use_thumbnail and len(processed_images) != 1:
+        processed_images.append(image.resize((image_size, image_size)))
+    return processed_images
+
+
+def load_pixel_values(image_path, input_size=448, max_num=6):
+    image = Image.open(image_path).convert("RGB")
+    transform = build_transform(input_size=input_size)
+    images = dynamic_preprocess(
+        image, image_size=input_size, use_thumbnail=True, max_num=max_num
+    )
+    return torch.stack([transform(img) for img in images])
+
+
+def build_internvl_prompt(model, question, answer, num_patches):
+    question = clean_text(question)
+    answer = clean_text(answer)
+    if "<image>" not in question:
+        question = "<image>\n" + question
+    template = model.conv_template.copy()
+    template.system_message = model.system_message
+    template.append_message(template.roles[0], question)
+    template.append_message(template.roles[1], answer)
+    prompt = template.get_prompt()
+    image_tokens = (
+        IMG_START_TOKEN
+        + IMG_CONTEXT_TOKEN * model.num_image_token * num_patches
+        + IMG_END_TOKEN
+    )
+    return prompt.replace("<image>", image_tokens, 1)
+
+
+def build_internvl_prefix(model, question, num_patches):
+    question = clean_text(question)
+    if "<image>" not in question:
+        question = "<image>\n" + question
+    template = model.conv_template.copy()
+    template.system_message = model.system_message
+    template.append_message(template.roles[0], question)
+    template.append_message(template.roles[1], None)
+    prompt = template.get_prompt()
+    image_tokens = (
+        IMG_START_TOKEN
+        + IMG_CONTEXT_TOKEN * model.num_image_token * num_patches
+        + IMG_END_TOKEN
+    )
+    return prompt.replace("<image>", image_tokens, 1)
+
+
+def load_internvl(model_path, device):
+    tokenizer = AutoTokenizer.from_pretrained(
+        model_path, trust_remote_code=True, use_fast=False
+    )
+    model = AutoModel.from_pretrained(
+        model_path,
+        torch_dtype=torch.bfloat16,
+        low_cpu_mem_usage=True,
+        use_flash_attn=False,
+        trust_remote_code=True,
+    ).eval()
+    model.to(device)
+    model.img_context_token_id = tokenizer.convert_tokens_to_ids(IMG_CONTEXT_TOKEN)
+    return tokenizer, model
+
+
+class LoRALinear(nn.Module):
+    def __init__(self, base_layer, rank=8, alpha=16, dropout=0.0):
+        super().__init__()
+        if not isinstance(base_layer, nn.Linear):
+            raise TypeError("LoRALinear expects nn.Linear")
+        self.base_layer = base_layer
+        for param in self.base_layer.parameters():
+            param.requires_grad_(False)
+        self.rank = int(rank)
+        self.alpha = float(alpha)
+        self.scale = self.alpha / max(self.rank, 1)
+        self.dropout = nn.Dropout(float(dropout)) if dropout else nn.Identity()
+        self.lora_A = nn.Parameter(torch.empty(self.rank, base_layer.in_features))
+        self.lora_B = nn.Parameter(torch.zeros(base_layer.out_features, self.rank))
+        nn.init.kaiming_uniform_(self.lora_A, a=math.sqrt(5))
+
+    def forward(self, x):
+        result = self.base_layer(x)
+        lora_dtype = self.lora_A.dtype
+        lora = F.linear(self.dropout(x).to(lora_dtype), self.lora_A)
+        lora = F.linear(lora, self.lora_B).to(result.dtype)
+        return result + lora * self.scale
+
+
+class OnlineRewardModel(nn.Module):
+    def __init__(self, model, head):
+        super().__init__()
+        self.model = model
+        self.head = head
+
+    def forward(self, pixel_values, input_ids, attention_mask):
+        hidden = internvl_hidden_states_no_logits(
+            self.model,
+            pixel_values=pixel_values,
+            input_ids=input_ids,
+            attention_mask=attention_mask,
+        )
+        idx = attention_mask.sum(dim=1) - 1
+        feats = hidden[torch.arange(hidden.shape[0], device=hidden.device), idx].float()
+        return self.head(feats).squeeze(-1)
+
+
+def internvl_hidden_states_no_logits(model, pixel_values, input_ids, attention_mask):
+    """Run InternVL multimodal encoding and decoder layers without the LM head."""
+    image_flags = torch.ones(
+        pixel_values.shape[0],
+        1,
+        dtype=torch.long,
+        device=pixel_values.device,
+    ).squeeze(-1)
+    input_embeds = model.language_model.get_input_embeddings()(input_ids).clone()
+
+    with torch.no_grad():
+        vit_embeds = model.extract_feature(pixel_values)
+    vit_embeds = vit_embeds[image_flags == 1]
+
+    batch_size, seq_len, hidden_size = input_embeds.shape
+    flat_embeds = input_embeds.reshape(batch_size * seq_len, hidden_size)
+    flat_ids = input_ids.reshape(batch_size * seq_len)
+    selected = flat_ids == model.img_context_token_id
+    try:
+        flat_embeds[selected] = flat_embeds[selected] * 0.0 + vit_embeds.reshape(-1, hidden_size)
+    except Exception:
+        vit_embeds = vit_embeds.reshape(-1, hidden_size)
+        n_token = selected.sum()
+        flat_embeds[selected] = flat_embeds[selected] * 0.0 + vit_embeds[:n_token]
+    input_embeds = flat_embeds.reshape(batch_size, seq_len, hidden_size)
+
+    outputs = model.language_model.model(
+        inputs_embeds=input_embeds,
+        attention_mask=attention_mask,
+        use_cache=False,
+        output_hidden_states=True,
+        return_dict=True,
+    )
+    return outputs.hidden_states[-1]
+
+
+def get_hidden_size(model):
+    for obj in (
+        getattr(getattr(model, "language_model", None), "config", None),
+        getattr(getattr(model, "config", None), "llm_config", None),
+        getattr(model, "config", None),
+    ):
+        value = getattr(obj, "hidden_size", None)
+        if value:
+            return int(value)
+    raise ValueError("Could not infer hidden size")
+
+
+def make_score_head(hidden_size):
+    return nn.Sequential(nn.LayerNorm(hidden_size), nn.Linear(hidden_size, 1))
+
+
+def _set_child_module(root, name, module):
+    parts = name.split(".")
+    parent = root
+    for part in parts[:-1]:
+        parent = getattr(parent, part)
+    setattr(parent, parts[-1], module)
+
+
+def freeze_model(model):
+    for param in model.parameters():
+        param.requires_grad_(False)
+
+
+def disable_gradient_checkpointing(model):
+    for module in (model, getattr(model, "language_model", None), getattr(model, "vision_model", None)):
+        if module is None:
+            continue
+        if hasattr(module, "gradient_checkpointing_disable"):
+            try:
+                module.gradient_checkpointing_disable()
+            except Exception:
+                pass
+        if hasattr(module, "gradient_checkpointing"):
+            try:
+                module.gradient_checkpointing = False
+            except Exception:
+                pass
+        config = getattr(module, "config", None)
+        if config is not None:
+            if hasattr(config, "gradient_checkpointing"):
+                config.gradient_checkpointing = False
+            if hasattr(config, "use_cache"):
+                config.use_cache = False
+
+
+def add_lora_adapters(model, rank, alpha, dropout, layer_start, target_modules):
+    target_modules = tuple(target_modules)
+    replaced = []
+    for name, module in list(model.named_modules()):
+        if not isinstance(module, nn.Linear):
+            continue
+        if not name.startswith("language_model.model.layers."):
+            continue
+        parts = name.split(".")
+        try:
+            layer_idx = int(parts[3])
+        except Exception:
+            continue
+        if layer_idx < int(layer_start):
+            continue
+        if parts[-1] not in target_modules:
+            continue
+        _set_child_module(model, name, LoRALinear(module, rank=rank, alpha=alpha, dropout=dropout))
+        replaced.append(name)
+    if not replaced:
+        raise ValueError("No LoRA target modules were replaced")
+    return replaced
+
+
+def trainable_state_dict(model):
+    return {name: param.detach().cpu() for name, param in model.named_parameters() if param.requires_grad}
+
+
+def count_trainable_params(module):
+    trainable = sum(p.numel() for p in module.parameters() if p.requires_grad)
+    total = sum(p.numel() for p in module.parameters())
+    return trainable, total
+
+
+def unwrap_reward_model(module):
+    return module.module if isinstance(module, DDP) else module
+
+
+def last_token_features(model, tokenizer, image_path, question, answers, args):
+    pixel_values_one = load_pixel_values(
+        image_path, input_size=args.input_size, max_num=args.max_num
+    )
+    num_patches = pixel_values_one.shape[0]
+    pixel_values = torch.cat([pixel_values_one for _ in answers], dim=0)
+    pixel_values = pixel_values.to(dtype=torch.bfloat16, device=args.device)
+    prompts = [
+        build_internvl_prompt(model, question, answer, num_patches)
+        for answer in answers
+    ]
+    old_side = tokenizer.padding_side
+    old_truncation_side = tokenizer.truncation_side
+    tokenizer.padding_side = "right"
+    tokenizer.truncation_side = "right"
+    model_inputs = tokenizer(
+        prompts,
+        return_tensors="pt",
+        padding=True,
+        truncation=True,
+        max_length=args.max_length,
+    )
+    tokenizer.padding_side = old_side
+    tokenizer.truncation_side = old_truncation_side
+    input_ids = model_inputs["input_ids"].to(args.device)
+    attention_mask = model_inputs["attention_mask"].to(args.device)
+    image_flags = torch.ones(pixel_values.shape[0], 1, dtype=torch.long, device=args.device)
+    with torch.inference_mode():
+        hidden = internvl_hidden_states_no_logits(
+            model,
+            pixel_values=pixel_values,
+            input_ids=input_ids,
+            attention_mask=attention_mask,
+        )
+        idx = attention_mask.sum(dim=1) - 1
+        feats = hidden[torch.arange(hidden.shape[0], device=args.device), idx].float().cpu()
+    return feats
+
+
+def response_logprob(model, tokenizer, image_path, question, answer, args):
+    pixel_values = load_pixel_values(
+        image_path, input_size=args.input_size, max_num=args.max_num
+    )
+    num_patches = pixel_values.shape[0]
+    pixel_values = pixel_values.to(dtype=torch.bfloat16, device=args.device)
+    prefix = build_internvl_prefix(model, question, num_patches)
+    full = build_internvl_prompt(model, question, answer, num_patches)
+    old_truncation_side = tokenizer.truncation_side
+    tokenizer.truncation_side = "right"
+    prefix_ids = tokenizer(
+        prefix, return_tensors="pt", truncation=True, max_length=args.max_length
+    )["input_ids"][0]
+    model_inputs = tokenizer(
+        full, return_tensors="pt", truncation=True, max_length=args.max_length
+    )
+    tokenizer.truncation_side = old_truncation_side
+    input_ids = model_inputs["input_ids"].to(args.device)
+    attention_mask = model_inputs["attention_mask"].to(args.device)
+    image_flags = torch.ones(pixel_values.shape[0], 1, dtype=torch.long, device=args.device)
+    with torch.inference_mode():
+        outputs = model(
+            pixel_values=pixel_values,
+            input_ids=input_ids,
+            attention_mask=attention_mask,
+            image_flags=image_flags,
+            return_dict=True,
+        )
+        logits = outputs.logits[0, :-1].float()
+        labels = input_ids[0, 1:]
+        log_probs = F.log_softmax(logits, dim=-1)
+        token_log_probs = log_probs.gather(1, labels[:, None]).squeeze(1)
+        start = max(int(prefix_ids.shape[0]) - 1, 0)
+        valid_len = int(attention_mask[0].sum().item()) - 1
+        token_log_probs = token_log_probs[start:valid_len]
+        if token_log_probs.numel() == 0:
+            return float("-inf")
+        return float(token_log_probs.mean().item())
+
+
+def cmd_prepare(args):
+    out_dir = Path(args.out_dir)
+    image_root = out_dir / "images"
+    out_dir.mkdir(parents=True, exist_ok=True)
+
+    bench = pd.read_parquet(args.benchmark_parquet)
+    bench_queries = {text_key(x) for x in bench["query"].tolist()}
+    eval_rows = []
+    for _, row in tqdm(bench.iterrows(), total=len(bench), desc="benchmark"):
+        item_id = str(row["id"])
+        image_path = save_image(
+            row["image"], image_root / "vlrewardbench" / f"{safe_name(item_id)}.jpg"
+        )
+        ranking = list(row["human_ranking"])
+        label = int(min(range(len(ranking)), key=lambda i: ranking[i]))
+        responses = list(row["response"])
+        eval_rows.append(
+            {
+                "id": item_id,
+                "query": clean_text(row["query"]),
+                "response_a": clean_text(responses[0]),
+                "response_b": clean_text(responses[1]),
+                "label": label,
+                "image_path": image_path,
+                "source": str(row.get("query_source", "")),
+            }
+        )
+    write_jsonl(out_dir / "vlrewardbench_eval.jsonl", eval_rows)
+
+    rlhf = pd.read_parquet(args.rlhf_parquet)
+    indices = list(range(len(rlhf)))
+    rng = random.Random(args.seed)
+    rng.shuffle(indices)
+    rows = []
+    skipped = 0
+    for idx in tqdm(indices, desc="rlhf-v"):
+        row = rlhf.iloc[idx]
+        pref = parse_pref_text(row["text"])
+        question = clean_text(pref.get("question"))
+        chosen = clean_text(pref.get("chosen"))
+        rejected = clean_text(pref.get("rejected"))
+        if not question or not chosen or not rejected:
+            skipped += 1
+            continue
+        if text_key(question) in bench_queries:
+            skipped += 1
+            continue
+        try:
+            image_path = save_image(
+                row["image"], image_root / "rlhf_v" / f"{safe_name(row.get('idx', idx))}.jpg"
+            )
+        except Exception:
+            skipped += 1
+            continue
+        rows.append(
+            {
+                "id": f"rlhf_v_{row.get('idx', idx)}",
+                "query": question,
+                "response_a": chosen,
+                "response_b": rejected,
+                "label": 0,
+                "image_path": image_path,
+                "source": str(row.get("origin_dataset", "")),
+            }
+        )
+        if args.train_limit and len(rows) >= args.train_limit:
+            break
+    val_size = min(args.val_size, max(1, len(rows) // 10))
+    train_rows = rows[val_size:]
+    val_rows = rows[:val_size]
+    write_jsonl(out_dir / "train_pairs.jsonl", train_rows)
+    write_jsonl(out_dir / "val_pairs.jsonl", val_rows)
+    manifest = {
+        "train_pairs": len(train_rows),
+        "val_pairs": len(val_rows),
+        "eval_pairs": len(eval_rows),
+        "skipped": skipped,
+        "seed": args.seed,
+    }
+    (out_dir / "manifest.json").write_text(
+        json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8"
+    )
+    print(json.dumps(manifest, ensure_ascii=False, indent=2))
+
+
+def parse_nested_value(value):
+    if isinstance(value, str):
+        text = value.strip()
+        if not text:
+            return value
+        for parser in (json.loads, ast.literal_eval):
+            try:
+                return parser(text)
+            except Exception:
+                pass
+        return value
+    if hasattr(value, "tolist") and not isinstance(value, (dict, bytes, bytearray)):
+        return parse_nested_value(value.tolist())
+    return value
+
+
+def extract_chat_text(messages):
+    messages = parse_nested_value(messages)
+    chunks = []
+
+    def visit(node):
+        node = parse_nested_value(node)
+        if isinstance(node, dict):
+            if node.get("type") == "text" and "text" in node:
+                chunks.append(str(node.get("text") or ""))
+            elif "content" in node:
+                visit(node["content"])
+            elif "text" in node:
+                chunks.append(str(node.get("text") or ""))
+        elif isinstance(node, (list, tuple)):
+            for item in node:
+                visit(item)
+        elif isinstance(node, str):
+            if node.lower() != "image":
+                chunks.append(node)
+
+    visit(messages)
+    return clean_text(" ".join(chunks))
+
+
+def cmd_prepare_h4(args):
+    out_dir = Path(args.out_dir)
+    image_root = out_dir / "images" / "rlaif_h4"
+    out_dir.mkdir(parents=True, exist_ok=True)
+    bench = pd.read_parquet(args.benchmark_parquet)
+    bench_queries = {text_key(x) for x in bench["query"].tolist()}
+    rng = random.Random(args.seed)
+    files = []
+    for pattern in args.parquet:
+        matches = sorted(glob.glob(pattern)) if any(ch in pattern for ch in "*?[]") else []
+        files.extend(matches)
+        if not matches:
+            files.append(pattern)
+    rows = []
+    skipped = 0
+    seen_queries = set()
+    for parquet_path in files:
+        frame = pd.read_parquet(parquet_path)
+        order = list(range(len(frame)))
+        rng.shuffle(order)
+        for idx in tqdm(order, desc=f"h4:{Path(parquet_path).name}"):
+            row = frame.iloc[idx]
+            question = extract_chat_text(row.get("prompt"))
+            chosen = extract_chat_text(row.get("chosen"))
+            rejected = extract_chat_text(row.get("rejected"))
+            key = text_key(question)
+            if not question or not chosen or not rejected:
+                skipped += 1
+                continue
+            if key in bench_queries:
+                skipped += 1
+                continue
+            if args.dedup_queries and key in seen_queries:
+                skipped += 1
+                continue
+            try:
+                image_path = save_image(
+                    row.get("images"),
+                    image_root / f"{safe_name(Path(parquet_path).stem)}_{idx}.jpg",
+                )
+            except Exception:
+                skipped += 1
+                continue
+            if args.dedup_queries:
+                seen_queries.add(key)
+            rows.append(
+                {
+                    "id": f"rlaif_h4_{Path(parquet_path).stem}_{idx}",
+                    "query": question,
+                    "response_a": chosen,
+                    "response_b": rejected,
+                    "label": 0,
+                    "image_path": image_path,
+                    "source": "rlaif_v_h4",
+                }
+            )
+            if args.limit and len(rows) >= args.limit:
+                break
+        if args.limit and len(rows) >= args.limit:
+            break
+    rng.shuffle(rows)
+    val_size = min(args.val_size, max(1, len(rows) // 20))
+    val_rows = rows[:val_size]
+    train_rows = rows[val_size:]
+    write_jsonl(out_dir / args.train_name, train_rows)
+    write_jsonl(out_dir / args.val_name, val_rows)
+    manifest = {
+        "train_pairs": len(train_rows),
+        "val_pairs": len(val_rows),
+        "skipped": skipped,
+        "files": files,
+        "seed": args.seed,
+    }
+    (out_dir / args.manifest_name).write_text(
+        json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8"
+    )
+    print(json.dumps(manifest, ensure_ascii=False, indent=2))
+
+
+def cmd_mix_jsonl(args):
+    rng = random.Random(args.seed)
+    rows = []
+    for path in args.inputs:
+        part = list(read_jsonl(path))
+        if args.limit_each:
+            part = part[: args.limit_each]
+        rows.extend(part)
+    rng.shuffle(rows)
+    if args.limit:
+        rows = rows[: args.limit]
+    write_jsonl(args.out, rows)
+    print(json.dumps({"out": args.out, "num_rows": len(rows)}, ensure_ascii=False))
+
+
+def cmd_pseudo_from_eval(args):
+    source_rows = {row["id"]: row for row in read_jsonl(args.source_jsonl)}
+    eval_payload = json.loads(Path(args.eval_json).read_text(encoding="utf-8"))
+    eval_rows = eval_payload.get("results") or eval_payload.get("partial_results") or []
+    out_rows = []
+    missing = 0
+    skipped = 0
+    for pred_row in eval_rows:
+        row_id = pred_row.get("id")
+        if row_id not in source_rows:
+            missing += 1
+            continue
+        prediction = pred_row.get("prediction")
+        if prediction is None:
+            skipped += 1
+            continue
+        if args.only_correct and not pred_row.get("correct"):
+            skipped += 1
+            continue
+        row = dict(source_rows[row_id])
+        row["orig_label"] = int(row["label"])
+        row["label"] = int(prediction)
+        row["teacher_label"] = int(prediction)
+        row["teacher_correct"] = bool(pred_row.get("correct"))
+        if args.source_suffix:
+            row["source"] = f"{row.get('source', '')}{args.source_suffix}"
+        out_rows.append(row)
+    write_jsonl(args.out, out_rows)
+    print(
+        json.dumps(
+            {
+                "source_jsonl": args.source_jsonl,
+                "eval_json": args.eval_json,
+                "out": args.out,
+                "num_rows": len(out_rows),
+                "missing": missing,
+                "skipped": skipped,
+                "only_correct": args.only_correct,
+            },
+            ensure_ascii=False,
+            indent=2,
+        )
+    )
+
+
+def cmd_precompute(args):
+    args.device = torch.device(args.device)
+    tokenizer, model = load_internvl(args.model_path, args.device)
+    rows = list(read_jsonl(args.jsonl))
+    if args.num_shards > 1:
+        rows = [row for i, row in enumerate(rows) if i % args.num_shards == args.shard_index]
+    if args.limit:
+        rows = rows[: args.limit]
+    features_a = []
+    features_b = []
+    labels = []
+    kept = []
+    for row in tqdm(rows, desc="features"):
+        try:
+            feats = last_token_features(
+                model,
+                tokenizer,
+                row["image_path"],
+                row["query"],
+                [row["response_a"], row["response_b"]],
+                args,
+            )
+        except Exception as exc:
+            print(f"skip {row.get('id')}: {exc}", flush=True)
+            continue
+        features_a.append(feats[0])
+        features_b.append(feats[1])
+        labels.append(int(row["label"]))
+        kept.append(row)
+    payload = {
+        "features_a": torch.stack(features_a),
+        "features_b": torch.stack(features_b),
+        "labels": torch.tensor(labels, dtype=torch.long),
+        "rows": kept,
+        "hidden_size": int(features_a[0].numel()) if features_a else 0,
+        "meta": vars(args),
+    }
+    Path(args.out).parent.mkdir(parents=True, exist_ok=True)
+    torch.save(payload, args.out)
+    print(f"saved {args.out} with {len(kept)} pairs")
+
+
+def cmd_merge_features(args):
+    payloads = [torch.load(path, map_location="cpu") for path in args.inputs]
+    rows = []
+    features_a = []
+    features_b = []
+    labels = []
+    for payload in payloads:
+        rows.extend(payload["rows"])
+        features_a.append(payload["features_a"])
+        features_b.append(payload["features_b"])
+        labels.append(payload["labels"])
+    merged = {
+        "features_a": torch.cat(features_a, dim=0),
+        "features_b": torch.cat(features_b, dim=0),
+        "labels": torch.cat(labels, dim=0),
+        "rows": rows,
+        "hidden_size": int(payloads[0]["hidden_size"]),
+        "meta": {"inputs": args.inputs},
+    }
+    Path(args.out).parent.mkdir(parents=True, exist_ok=True)
+    torch.save(merged, args.out)
+    print(f"saved {args.out} with {len(rows)} pairs")
+
+
+def feature_accuracy(head, payload, device):
+    a = payload["features_a"].to(device)
+    b = payload["features_b"].to(device)
+    labels = payload["labels"].to(device)
+    with torch.inference_mode():
+        score_a = head(a).squeeze(-1)
+        score_b = head(b).squeeze(-1)
+        pred = torch.where(score_a >= score_b, 0, 1)
+        acc = (pred == labels).float().mean().item()
+        margin = torch.where(labels == 0, score_a - score_b, score_b - score_a)
+    return acc, float(margin.mean().item())
+
+
+def cmd_train_head(args):
+    device = torch.device(args.device)
+    train = torch.load(args.train_features, map_location="cpu")
+    val = torch.load(args.val_features, map_location="cpu") if args.val_features else None
+    hidden_size = int(train["features_a"].shape[1])
+    head = nn.Sequential(nn.LayerNorm(hidden_size), nn.Linear(hidden_size, 1)).to(device)
+    opt = torch.optim.AdamW(head.parameters(), lr=args.lr, weight_decay=args.weight_decay)
+    a = train["features_a"].to(device)
+    b = train["features_b"].to(device)
+    labels = train["labels"].to(device)
+    order = torch.arange(labels.shape[0], device=device)
+    best = {"val_acc": -1.0, "epoch": -1}
+    out_dir = Path(args.out_dir)
+    out_dir.mkdir(parents=True, exist_ok=True)
+    history = []
+    for epoch in range(1, args.epochs + 1):
+        head.train()
+        perm = order[torch.randperm(order.numel(), device=device)]
+        losses = []
+        for start in range(0, perm.numel(), args.batch_size):
+            idx = perm[start : start + args.batch_size]
+            score_a = head(a[idx]).squeeze(-1)
+            score_b = head(b[idx]).squeeze(-1)
+            margin = torch.where(labels[idx] == 0, score_a - score_b, score_b - score_a)
+            loss = -F.logsigmoid(margin).mean()
+            opt.zero_grad(set_to_none=True)
+            loss.backward()
+            opt.step()
+            losses.append(float(loss.item()))
+        train_acc, train_margin = feature_accuracy(head, train, device)
+        val_acc, val_margin = (None, None)
+        if val is not None:
+            val_acc, val_margin = feature_accuracy(head, val, device)
+            if val_acc > best["val_acc"]:
+                best = {"val_acc": val_acc, "epoch": epoch}
+                torch.save(
+                    {
+                        "state_dict": head.state_dict(),
+                        "hidden_size": hidden_size,
+                        "best": best,
+                        "args": vars(args),
+                    },
+                    out_dir / "score_head_best.pt",
+                )
+        row = {
+            "epoch": epoch,
+            "loss": sum(losses) / len(losses),
+            "train_acc": train_acc,
+            "train_margin": train_margin,
+            "val_acc": val_acc,
+            "val_margin": val_margin,
+        }
+        history.append(row)
+        print(json.dumps(row), flush=True)
+    torch.save(
+        {"state_dict": head.state_dict(), "hidden_size": hidden_size, "args": vars(args)},
+        out_dir / "score_head_last.pt",
+    )
+    (out_dir / "train_history.json").write_text(json.dumps(history, indent=2))
+    print("best", json.dumps(best))
+
+
+def load_head(path, device):
+    checkpoint = torch.load(path, map_location="cpu")
+    hidden_size = int(checkpoint["hidden_size"])
+    head = nn.Sequential(nn.LayerNorm(hidden_size), nn.Linear(hidden_size, 1)).to(device)
+    head.load_state_dict(checkpoint["state_dict"])
+    head.eval()
+    return head, checkpoint
+
+
+def cmd_eval_head(args):
+    device = torch.device(args.device)
+    payload = torch.load(args.features, map_location="cpu")
+    head, checkpoint = load_head(args.head, device)
+    a = payload["features_a"].to(device)
+    b = payload["features_b"].to(device)
+    labels = payload["labels"].to(device)
+    with torch.inference_mode():
+        score_a = head(a).squeeze(-1)
+        score_b = head(b).squeeze(-1)
+        pred = torch.where(score_a >= score_b, 0, 1)
+    correct = (pred == labels).cpu().tolist()
+    rows = payload["rows"]
+    results = []
+    by_source = {}
+    for i, row in enumerate(rows):
+        source = row.get("source", "")
+        by_source.setdefault(source, [0, 0])
+        by_source[source][0] += int(correct[i])
+        by_source[source][1] += 1
+        results.append(
+            {
+                "id": row.get("id"),
+                "label": int(labels[i].cpu()),
+                "prediction": int(pred[i].cpu()),
+                "correct": bool(correct[i]),
+                "score_a": float(score_a[i].cpu()),
+                "score_b": float(score_b[i].cpu()),
+                "source": source,
+            }
+        )
+    summary = {
+        "accuracy": sum(correct) / len(correct),
+        "num_examples": len(correct),
+        "by_source": {
+            k: {"accuracy": v[0] / v[1], "num_examples": v[1]}
+            for k, v in sorted(by_source.items())
+        },
+        "head": args.head,
+        "checkpoint_best": checkpoint.get("best"),
+    }
+    Path(args.out).parent.mkdir(parents=True, exist_ok=True)
+    Path(args.out).write_text(
+        json.dumps({"summary": summary, "results": results}, ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
+    print(json.dumps(summary, ensure_ascii=False, indent=2))
+
+
+def setup_distributed(device_arg):
+    world_size = int(os.environ.get("WORLD_SIZE", "1"))
+    if world_size > 1:
+        local_rank = int(os.environ["LOCAL_RANK"])
+        torch.cuda.set_device(local_rank)
+        dist.init_process_group(backend="nccl")
+        device = torch.device("cuda", local_rank)
+        return True, local_rank, int(os.environ.get("RANK", "0")), world_size, device
+    return False, 0, 0, 1, torch.device(device_arg)
+
+
+def cleanup_distributed(enabled):
+    if enabled and dist.is_initialized():
+        dist.destroy_process_group()
+
+
+def pair_inputs_from_row(model, tokenizer, row, args):
+    pixel_values_one = load_pixel_values(
+        row["image_path"], input_size=args.input_size, max_num=args.max_num
+    )
+    num_patches = pixel_values_one.shape[0]
+    pixel_values = torch.cat([pixel_values_one, pixel_values_one], dim=0)
+    pixel_values = pixel_values.to(dtype=torch.bfloat16, device=args.device)
+    prompts = [
+        build_internvl_prompt(model, row["query"], row["response_a"], num_patches),
+        build_internvl_prompt(model, row["query"], row["response_b"], num_patches),
+    ]
+    old_side = tokenizer.padding_side
+    old_truncation_side = tokenizer.truncation_side
+    tokenizer.padding_side = "right"
+    tokenizer.truncation_side = "right"
+    model_inputs = tokenizer(
+        prompts,
+        return_tensors="pt",
+        padding=True,
+        truncation=True,
+        max_length=args.max_length,
+    )
+    tokenizer.padding_side = old_side
+    tokenizer.truncation_side = old_truncation_side
+    input_ids = model_inputs["input_ids"].to(args.device)
+    attention_mask = model_inputs["attention_mask"].to(args.device)
+    return pixel_values, input_ids, attention_mask, int(row["label"])
+
+
+@torch.inference_mode()
+def online_accuracy(reward_model, tokenizer, rows, args, limit=0):
+    module = unwrap_reward_model(reward_model)
+    module.eval()
+    if limit:
+        rows = rows[:limit]
+    correct = 0
+    skipped = 0
+    margins = []
+    for row in tqdm(rows, desc="online-eval", disable=getattr(args, "rank", 0) != 0):
+        try:
+            pixel_values, input_ids, attention_mask, label = pair_inputs_from_row(
+                module.model, tokenizer, row, args
+            )
+            scores = module(pixel_values, input_ids, attention_mask)
+            pred = 0 if float(scores[0]) >= float(scores[1]) else 1
+            margin = float(scores[0] - scores[1]) if label == 0 else float(scores[1] - scores[0])
+        except Exception as exc:
+            print(f"skip eval {row.get('id')}: {exc}", flush=True)
+            skipped += 1
+            continue
+        correct += int(pred == label)
+        margins.append(margin)
+    total = max(1, len(margins))
+    module.train()
+    return correct / total, (sum(margins) / total if margins else 0.0), skipped
+
+
+def save_lora_reward_checkpoint(path, reward_module, args, best):
+    module = unwrap_reward_model(reward_module)
+    payload = {
+        "model_lora_state": trainable_state_dict(module.model),
+        "head_state": module.head.state_dict(),
+        "hidden_size": get_hidden_size(module.model),
+        "best": best,
+        "lora_config": {
+            "rank": args.lora_rank,
+            "alpha": args.lora_alpha,
+            "dropout": args.lora_dropout,
+            "layer_start": args.lora_layer_start,
+            "target_modules": args.lora_target_modules,
+        },
+        "args": {k: str(v) if isinstance(v, torch.device) else v for k, v in vars(args).items()},
+    }
+    Path(path).parent.mkdir(parents=True, exist_ok=True)
+    torch.save(payload, path)
+
+
+def build_lora_reward_model(args, checkpoint=None, train=False):
+    tokenizer, model = load_internvl(args.model_path, args.device)
+    disable_gradient_checkpointing(model)
+    freeze_model(model)
+    config = checkpoint.get("lora_config") if checkpoint else None
+    rank = int(config.get("rank", args.lora_rank)) if config else args.lora_rank
+    alpha = float(config.get("alpha", args.lora_alpha)) if config else args.lora_alpha
+    dropout = float(config.get("dropout", args.lora_dropout)) if config else args.lora_dropout
+    layer_start = int(config.get("layer_start", args.lora_layer_start)) if config else args.lora_layer_start
+    target_modules = config.get("target_modules", args.lora_target_modules) if config else args.lora_target_modules
+    replaced = add_lora_adapters(
+        model,
+        rank=rank,
+        alpha=alpha,
+        dropout=dropout if train else 0.0,
+        layer_start=layer_start,
+        target_modules=target_modules,
+    )
+    hidden_size = get_hidden_size(model)
+    head = make_score_head(hidden_size).to(args.device)
+    reward_model = OnlineRewardModel(model, head).to(args.device)
+    if checkpoint:
+        missing, unexpected = model.load_state_dict(checkpoint["model_lora_state"], strict=False)
+        head.load_state_dict(checkpoint["head_state"])
+        if unexpected:
+            print(f"unexpected checkpoint keys: {unexpected}", flush=True)
+    reward_model.train(mode=train)
+    return tokenizer, reward_model, replaced
+
+
+def cmd_train_lora_reward(args):
+    torch.backends.cuda.matmul.allow_tf32 = True
+    distributed, local_rank, rank, world_size, device = setup_distributed(args.device)
+    args.device = device
+    args.rank = rank
+    try:
+        train_rows = list(read_jsonl(args.train_jsonl))
+        val_rows = list(read_jsonl(args.val_jsonl)) if args.val_jsonl else []
+        if args.train_limit:
+            train_rows = train_rows[: args.train_limit]
+        if args.val_limit:
+            val_rows = val_rows[: args.val_limit]
+        init_checkpoint = None
+        if args.init_checkpoint:
+            init_checkpoint = torch.load(args.init_checkpoint, map_location="cpu")
+        tokenizer, reward_model, replaced = build_lora_reward_model(
+            args, checkpoint=init_checkpoint, train=True
+        )
+        if distributed:
+            reward_model = DDP(
+                reward_model,
+                device_ids=[local_rank],
+                output_device=local_rank,
+                broadcast_buffers=False,
+                find_unused_parameters=False,
+            )
+        trainable, total = count_trainable_params(unwrap_reward_model(reward_model))
+        if rank == 0:
+            print(
+                json.dumps(
+                    {
+                        "train_rows": len(train_rows),
+                        "val_rows": len(val_rows),
+                        "world_size": world_size,
+                        "lora_modules": len(replaced),
+                        "trainable_params": trainable,
+                        "total_params": total,
+                    },
+                    ensure_ascii=False,
+                    indent=2,
+                ),
+                flush=True,
+            )
+        module = unwrap_reward_model(reward_model)
+        lora_params = [p for n, p in module.model.named_parameters() if p.requires_grad]
+        head_params = list(module.head.parameters())
+        opt = torch.optim.AdamW(
+            [
+                {"params": lora_params, "lr": args.lora_lr},
+                {"params": head_params, "lr": args.head_lr},
+            ],
+            weight_decay=args.weight_decay,
+        )
+        steps_per_epoch = math.ceil(math.ceil(len(train_rows) / world_size) / args.grad_accum)
+        total_steps = max(1, steps_per_epoch * args.epochs)
+        warmup_steps = int(total_steps * args.warmup_ratio)
+
+        def lr_lambda(step):
+            if warmup_steps and step < warmup_steps:
+                return max(1e-8, step / max(1, warmup_steps))
+            progress = (step - warmup_steps) / max(1, total_steps - warmup_steps)
+            return 0.5 * (1.0 + math.cos(math.pi * min(1.0, progress)))
+
+        scheduler = torch.optim.lr_scheduler.LambdaLR(opt, lr_lambda)
+        out_dir = Path(args.out_dir)
+        if rank == 0:
+            out_dir.mkdir(parents=True, exist_ok=True)
+        if distributed:
+            dist.barrier()
+        best = {"val_acc": -1.0, "epoch": -1, "step": -1}
+        history = []
+        global_step = 0
+        sampler = None
+        if distributed:
+            sampler = DistributedSampler(
+                train_rows,
+                num_replicas=world_size,
+                rank=rank,
+                shuffle=True,
+                seed=args.seed,
+                drop_last=False,
+            )
+        rng = random.Random(args.seed + rank)
+        for epoch in range(1, args.epochs + 1):
+            reward_model.train()
+            if sampler:
+                sampler.set_epoch(epoch)
+                indices = list(iter(sampler))
+            else:
+                indices = list(range(len(train_rows)))
+                rng.shuffle(indices)
+            opt.zero_grad(set_to_none=True)
+            losses = []
+            correct = 0
+            seen = 0
+            start_time = time.time()
+            for local_step, idx in enumerate(indices):
+                row = train_rows[int(idx) % len(train_rows)]
+                sync_now = ((local_step + 1) % args.grad_accum == 0) or (local_step + 1 == len(indices))
+                sync_context = (
+                    contextlib.nullcontext()
+                    if (sync_now or not distributed)
+                    else reward_model.no_sync()
+                )
+                try:
+                    pixel_values, input_ids, attention_mask, label = pair_inputs_from_row(
+                        module.model, tokenizer, row, args
+                    )
+                    with sync_context:
+                        scores = reward_model(pixel_values, input_ids, attention_mask)
+                        margin = scores[0] - scores[1] if label == 0 else scores[1] - scores[0]
+                        loss = -F.logsigmoid(margin) / args.grad_accum
+                        loss.backward()
+                    pred = 0 if float(scores[0].detach()) >= float(scores[1].detach()) else 1
+                    correct += int(pred == label)
+                    seen += 1
+                    losses.append(float(loss.detach().cpu()) * args.grad_accum)
+                except RuntimeError as exc:
+                    if "out of memory" in str(exc).lower():
+                        torch.cuda.empty_cache()
+                    if distributed:
+                        raise
+                    print(f"skip train {row.get('id')}: {exc}", flush=True)
+                    continue
+                except Exception as exc:
+                    if distributed:
+                        raise
+                    print(f"skip train {row.get('id')}: {exc}", flush=True)
+                    continue
+                if sync_now:
+                    if args.max_grad_norm:
+                        torch.nn.utils.clip_grad_norm_(
+                            [p for p in module.parameters() if p.requires_grad],
+                            args.max_grad_norm,
+                        )
+                    opt.step()
+                    scheduler.step()
+                    opt.zero_grad(set_to_none=True)
+                    global_step += 1
+                if rank == 0 and args.log_every and seen and seen % args.log_every == 0:
+                    print(
+                        json.dumps(
+                            {
+                                "epoch": epoch,
+                                "seen_rank0": seen,
+                                "loss": sum(losses[-args.log_every:]) / min(len(losses), args.log_every),
+                                "train_acc_rank0": correct / seen,
+                                "lr_lora": scheduler.get_last_lr()[0],
+                                "lr_head": scheduler.get_last_lr()[1],
+                            }
+                        ),
+                        flush=True,
+                    )
+            local_stats = torch.tensor(
+                [sum(losses), len(losses), correct, seen],
+                dtype=torch.float64,
+                device=args.device,
+            )
+            if distributed:
+                dist.all_reduce(local_stats, op=dist.ReduceOp.SUM)
+            train_loss = float(local_stats[0].item() / max(1.0, local_stats[1].item()))
+            train_acc = float(local_stats[2].item() / max(1.0, local_stats[3].item()))
+            val_acc = None
+            val_margin = None
+            val_skipped = 0
+            if distributed:
+                dist.barrier()
+            if rank == 0 and val_rows:
+                val_acc, val_margin, val_skipped = online_accuracy(
+                    reward_model, tokenizer, val_rows, args, limit=0
+                )
+                if val_acc > best["val_acc"]:
+                    best = {"val_acc": val_acc, "epoch": epoch, "step": global_step}
+                    save_lora_reward_checkpoint(out_dir / "reward_lora_best.pt", reward_model, args, best)
+            if distributed:
+                dist.barrier()
+            row = {
+                "epoch": epoch,
+                "loss": train_loss,
+                "train_acc": train_acc,
+                "val_acc": val_acc,
+                "val_margin": val_margin,
+                "val_skipped": val_skipped,
+                "seconds": time.time() - start_time,
+                "step": global_step,
+            }
+            if rank == 0:
+                history.append(row)
+                print(json.dumps(row, ensure_ascii=False), flush=True)
+                (out_dir / "train_history.json").write_text(json.dumps(history, indent=2))
+        if rank == 0:
+            save_lora_reward_checkpoint(out_dir / "reward_lora_last.pt", reward_model, args, best)
+            print("best", json.dumps(best, ensure_ascii=False), flush=True)
+    finally:
+        cleanup_distributed(distributed)
+
+
+def cmd_eval_lora_reward(args):
+    args.device = torch.device(args.device)
+    checkpoint = torch.load(args.checkpoint, map_location="cpu")
+    tokenizer, reward_model, _ = build_lora_reward_model(args, checkpoint=checkpoint, train=False)
+    reward_model.eval()
+    rows = list(read_jsonl(args.jsonl))
+    if args.num_shards > 1:
+        rows = [row for i, row in enumerate(rows) if i % args.num_shards == args.shard_index]
+    if args.limit:
+        rows = rows[: args.limit]
+    results = []
+    correct = 0
+    by_source = {}
+    for row in tqdm(rows, desc="lora-eval"):
+        try:
+            pixel_values, input_ids, attention_mask, label = pair_inputs_from_row(
+                reward_model.model, tokenizer, row, args
+            )
+            with torch.inference_mode():
+                scores = reward_model(pixel_values, input_ids, attention_mask)
+            score_a = float(scores[0].cpu())
+            score_b = float(scores[1].cpu())
+            pred = 0 if score_a >= score_b else 1
+        except Exception as exc:
+            print(f"skip eval {row.get('id')}: {exc}", flush=True)
+            continue
+        ok = pred == label
+        correct += int(ok)
+        source = row.get("source", "")
+        by_source.setdefault(source, [0, 0])
+        by_source[source][0] += int(ok)
+        by_source[source][1] += 1
+        results.append(
+            {
+                "id": row.get("id"),
+                "label": label,
+                "prediction": pred,
+                "correct": ok,
+                "score_a": score_a,
+                "score_b": score_b,
+                "source": source,
+            }
+        )
+        if args.flush_every and len(results) % args.flush_every == 0:
+            Path(args.out).parent.mkdir(parents=True, exist_ok=True)
+            Path(args.out).write_text(
+                json.dumps({"partial_results": results}, ensure_ascii=False, indent=2),
+                encoding="utf-8",
+            )
+    summary = {
+        "accuracy": correct / len(results),
+        "num_examples": len(results),
+        "by_source": {
+            k: {"accuracy": v[0] / v[1], "num_examples": v[1]}
+            for k, v in sorted(by_source.items())
+        },
+        "checkpoint": args.checkpoint,
+        "checkpoint_best": checkpoint.get("best"),
+        "method": "lora_score_head",
+    }
+    Path(args.out).parent.mkdir(parents=True, exist_ok=True)
+    Path(args.out).write_text(
+        json.dumps({"summary": summary, "results": results}, ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
+    print(json.dumps(summary, ensure_ascii=False, indent=2))
+
+
+def cmd_base_logprob_eval(args):
+    args.device = torch.device(args.device)
+    tokenizer, model = load_internvl(args.model_path, args.device)
+    rows = list(read_jsonl(args.jsonl))
+    if args.num_shards > 1:
+        rows = [row for i, row in enumerate(rows) if i % args.num_shards == args.shard_index]
+    if args.limit:
+        rows = rows[: args.limit]
+    results = []
+    correct = 0
+    by_source = {}
+    for row in tqdm(rows, desc="base-logprob"):
+        score_a = response_logprob(
+            model, tokenizer, row["image_path"], row["query"], row["response_a"], args
+        )
+        score_b = response_logprob(
+            model, tokenizer, row["image_path"], row["query"], row["response_b"], args
+        )
+        pred = 0 if score_a >= score_b else 1
+        ok = pred == int(row["label"])
+        correct += int(ok)
+        source = row.get("source", "")
+        by_source.setdefault(source, [0, 0])
+        by_source[source][0] += int(ok)
+        by_source[source][1] += 1
+        results.append(
+            {
+                "id": row.get("id"),
+                "label": int(row["label"]),
+                "prediction": pred,
+                "correct": ok,
+                "score_a": score_a,
+                "score_b": score_b,
+                "source": source,
+            }
+        )
+        if args.flush_every and len(results) % args.flush_every == 0:
+            Path(args.out).parent.mkdir(parents=True, exist_ok=True)
+            Path(args.out).write_text(
+                json.dumps({"partial_results": results}, ensure_ascii=False, indent=2),
+                encoding="utf-8",
+            )
+    summary = {
+        "accuracy": correct / len(results),
+        "num_examples": len(results),
+        "by_source": {
+            k: {"accuracy": v[0] / v[1], "num_examples": v[1]}
+            for k, v in sorted(by_source.items())
+        },
+        "method": "conditional_mean_logprob",
+    }
+    Path(args.out).parent.mkdir(parents=True, exist_ok=True)
+    Path(args.out).write_text(
+        json.dumps({"summary": summary, "results": results}, ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
+    print(json.dumps(summary, ensure_ascii=False, indent=2))
+
+
+def base_judge_prompt(question, response_a, response_b):
+    return (
+        "You are evaluating two candidate answers to a visual question. "
+        "Use the image and the user question to decide which response is better. "
+        "Prefer the response that is more visually grounded, factual, complete, and follows the question. "
+        "If one response contains hallucinated visual details or contradicts the image, choose the other response.\n\n"
+        f"Question:\n{clean_text(question)}\n\n"
+        f"Response A:\n{clean_text(response_a)}\n\n"
+        f"Response B:\n{clean_text(response_b)}\n\n"
+        "Answer with exactly one letter: A or B."
+    )
+
+
+def parse_choice(text):
+    text = str(text or "").strip()
+    m = re.search(r"\b([AB])\b", text.upper())
+    if m:
+        return 0 if m.group(1) == "A" else 1
+    return None
+
+
+def cmd_base_judge_eval(args):
+    args.device = torch.device(args.device)
+    tokenizer, model = load_internvl(args.model_path, args.device)
+    rows = list(read_jsonl(args.jsonl))
+    if args.num_shards > 1:
+        rows = [row for i, row in enumerate(rows) if i % args.num_shards == args.shard_index]
+    if args.limit:
+        rows = rows[: args.limit]
+    generation_config = dict(max_new_tokens=args.max_new_tokens, do_sample=False)
+    results = []
+    correct = 0
+    parsed = 0
+    by_source = {}
+    for row in tqdm(rows, desc="base-judge"):
+        pixel_values = load_pixel_values(
+            row["image_path"], input_size=args.input_size, max_num=args.max_num
+        ).to(torch.bfloat16).to(args.device)
+        question = base_judge_prompt(row["query"], row["response_a"], row["response_b"])
+        with torch.inference_mode():
+            output = model.chat(tokenizer, pixel_values, question, generation_config)
+        pred = parse_choice(output)
+        if pred is None:
+            pred = 0
+        else:
+            parsed += 1
+        ok = pred == int(row["label"])
+        correct += int(ok)
+        source = row.get("source", "")
+        by_source.setdefault(source, [0, 0])
+        by_source[source][0] += int(ok)
+        by_source[source][1] += 1
+        results.append(
+            {
+                "id": row.get("id"),
+                "label": int(row["label"]),
+                "prediction": pred,
+                "correct": ok,
+                "raw_output": output,
+                "source": source,
+            }
+        )
+        if args.flush_every and len(results) % args.flush_every == 0:
+            Path(args.out).parent.mkdir(parents=True, exist_ok=True)
+            Path(args.out).write_text(
+                json.dumps({"partial_results": results}, ensure_ascii=False, indent=2),
+                encoding="utf-8",
+            )
+    summary = {
+        "accuracy": correct / len(results),
+        "num_examples": len(results),
+        "parse_rate": parsed / len(results),
+        "by_source": {
+            k: {"accuracy": v[0] / v[1], "num_examples": v[1]}
+            for k, v in sorted(by_source.items())
+        },
+        "method": "base_model_generative_judge",
+    }
+    Path(args.out).parent.mkdir(parents=True, exist_ok=True)
+    Path(args.out).write_text(
+        json.dumps({"summary": summary, "results": results}, ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
+    print(json.dumps(summary, ensure_ascii=False, indent=2))
+
+
+def cmd_merge_eval_json(args):
+    all_results = []
+    for path in args.inputs:
+        data = json.loads(Path(path).read_text(encoding="utf-8"))
+        all_results.extend(data.get("results") or data.get("partial_results") or [])
+    correct = sum(1 for row in all_results if row.get("correct"))
+    by_source = {}
+    for row in all_results:
+        source = row.get("source", "")
+        by_source.setdefault(source, [0, 0])
+        by_source[source][0] += int(bool(row.get("correct")))
+        by_source[source][1] += 1
+    summary = {
+        "accuracy": correct / len(all_results),
+        "num_examples": len(all_results),
+        "by_source": {
+            k: {"accuracy": v[0] / v[1], "num_examples": v[1]}
+            for k, v in sorted(by_source.items())
+        },
+        "inputs": args.inputs,
+    }
+    Path(args.out).parent.mkdir(parents=True, exist_ok=True)
+    Path(args.out).write_text(
+        json.dumps({"summary": summary, "results": all_results}, ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
+    print(json.dumps(summary, ensure_ascii=False, indent=2))
+
+
+def add_model_args(parser):
+    parser.add_argument("--model-path", default="/data2/ljl/csh/pretrained_model/InternVL2_5-2B")
+    parser.add_argument("--device", default="cuda:0")
+    parser.add_argument("--input-size", type=int, default=448)
+    parser.add_argument("--max-num", type=int, default=6)
+    parser.add_argument("--max-length", type=int, default=2048)
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    sub = parser.add_subparsers(dest="cmd", required=True)
+
+    p = sub.add_parser("prepare")
+    p.add_argument("--rlhf-parquet", required=True)
+    p.add_argument("--benchmark-parquet", required=True)
+    p.add_argument("--out-dir", required=True)
+    p.add_argument("--train-limit", type=int, default=5500)
+    p.add_argument("--val-size", type=int, default=500)
+    p.add_argument("--seed", type=int, default=42)
+    p.set_defaults(func=cmd_prepare)
+
+    p = sub.add_parser("prepare-h4")
+    p.add_argument("--parquet", nargs="+", required=True)
+    p.add_argument("--benchmark-parquet", required=True)
+    p.add_argument("--out-dir", required=True)
+    p.add_argument("--limit", type=int, default=12000)
+    p.add_argument("--val-size", type=int, default=800)
+    p.add_argument("--seed", type=int, default=42)
+    p.add_argument("--train-name", default="train_pairs_h4.jsonl")
+    p.add_argument("--val-name", default="val_pairs_h4.jsonl")
+    p.add_argument("--manifest-name", default="manifest_h4.json")
+    p.add_argument(
+        "--dedup-queries",
+        action="store_true",
+        help="Deduplicate H4 rows by query text. Disabled by default because many visual prompts share generic wording across different images.",
+    )
+    p.set_defaults(func=cmd_prepare_h4)
+
+    p = sub.add_parser("mix-jsonl")
+    p.add_argument("--inputs", nargs="+", required=True)
+    p.add_argument("--out", required=True)
+    p.add_argument("--limit-each", type=int, default=0)
+    p.add_argument("--limit", type=int, default=0)
+    p.add_argument("--seed", type=int, default=42)
+    p.set_defaults(func=cmd_mix_jsonl)
+
+    p = sub.add_parser("pseudo-from-eval")
+    p.add_argument("--source-jsonl", required=True)
+    p.add_argument("--eval-json", required=True)
+    p.add_argument("--out", required=True)
+    p.add_argument("--only-correct", action="store_true")
+    p.add_argument("--source-suffix", default="")
+    p.set_defaults(func=cmd_pseudo_from_eval)
+
+    p = sub.add_parser("precompute")
+    add_model_args(p)
+    p.add_argument("--jsonl", required=True)
+    p.add_argument("--out", required=True)
+    p.add_argument("--limit", type=int, default=0)
+    p.add_argument("--num-shards", type=int, default=1)
+    p.add_argument("--shard-index", type=int, default=0)
+    p.set_defaults(func=cmd_precompute)
+
+    p = sub.add_parser("merge-features")
+    p.add_argument("--inputs", nargs="+", required=True)
+    p.add_argument("--out", required=True)
+    p.set_defaults(func=cmd_merge_features)
+
+    p = sub.add_parser("train-head")
+    p.add_argument("--train-features", required=True)
+    p.add_argument("--val-features", required=True)
+    p.add_argument("--out-dir", required=True)
+    p.add_argument("--device", default="cuda:0")
+    p.add_argument("--epochs", type=int, default=80)
+    p.add_argument("--batch-size", type=int, default=128)
+    p.add_argument("--lr", type=float, default=1e-3)
+    p.add_argument("--weight-decay", type=float, default=1e-2)
+    p.set_defaults(func=cmd_train_head)
+
+    p = sub.add_parser("eval-head")
+    p.add_argument("--features", required=True)
+    p.add_argument("--head", required=True)
+    p.add_argument("--out", required=True)
+    p.add_argument("--device", default="cuda:0")
+    p.set_defaults(func=cmd_eval_head)
+
+    p = sub.add_parser("train-lora-reward")
+    add_model_args(p)
+    p.add_argument("--train-jsonl", required=True)
+    p.add_argument("--val-jsonl", required=True)
+    p.add_argument("--out-dir", required=True)
+    p.add_argument("--epochs", type=int, default=2)
+    p.add_argument("--train-limit", type=int, default=0)
+    p.add_argument("--val-limit", type=int, default=0)
+    p.add_argument("--grad-accum", type=int, default=8)
+    p.add_argument("--lora-rank", type=int, default=8)
+    p.add_argument("--lora-alpha", type=float, default=16.0)
+    p.add_argument("--lora-dropout", type=float, default=0.0)
+    p.add_argument("--lora-layer-start", type=int, default=16)
+    p.add_argument("--lora-target-modules", nargs="+", default=["wqkv", "wo", "w1", "w2", "w3"])
+    p.add_argument("--lora-lr", type=float, default=5e-5)
+    p.add_argument("--head-lr", type=float, default=2e-4)
+    p.add_argument("--weight-decay", type=float, default=1e-2)
+    p.add_argument("--warmup-ratio", type=float, default=0.03)
+    p.add_argument("--max-grad-norm", type=float, default=1.0)
+    p.add_argument("--log-every", type=int, default=100)
+    p.add_argument("--seed", type=int, default=42)
+    p.add_argument("--init-checkpoint", default="")
+    p.set_defaults(func=cmd_train_lora_reward)
+
+    p = sub.add_parser("eval-lora-reward")
+    add_model_args(p)
+    p.add_argument("--jsonl", required=True)
+    p.add_argument("--checkpoint", required=True)
+    p.add_argument("--out", required=True)
+    p.add_argument("--limit", type=int, default=0)
+    p.add_argument("--flush-every", type=int, default=20)
+    p.add_argument("--num-shards", type=int, default=1)
+    p.add_argument("--shard-index", type=int, default=0)
+    p.add_argument("--lora-rank", type=int, default=8)
+    p.add_argument("--lora-alpha", type=float, default=16.0)
+    p.add_argument("--lora-dropout", type=float, default=0.0)
+    p.add_argument("--lora-layer-start", type=int, default=16)
+    p.add_argument("--lora-target-modules", nargs="+", default=["wqkv", "wo", "w1", "w2", "w3"])
+    p.set_defaults(func=cmd_eval_lora_reward)
+
+    p = sub.add_parser("base-logprob-eval")
+    add_model_args(p)
+    p.add_argument("--jsonl", required=True)
+    p.add_argument("--out", required=True)
+    p.add_argument("--limit", type=int, default=0)
+    p.add_argument("--flush-every", type=int, default=20)
+    p.add_argument("--num-shards", type=int, default=1)
+    p.add_argument("--shard-index", type=int, default=0)
+    p.set_defaults(func=cmd_base_logprob_eval)
+
+    p = sub.add_parser("base-judge-eval")
+    add_model_args(p)
+    p.add_argument("--jsonl", required=True)
+    p.add_argument("--out", required=True)
+    p.add_argument("--limit", type=int, default=0)
+    p.add_argument("--flush-every", type=int, default=20)
+    p.add_argument("--num-shards", type=int, default=1)
+    p.add_argument("--shard-index", type=int, default=0)
+    p.add_argument("--max-new-tokens", type=int, default=8)
+    p.set_defaults(func=cmd_base_judge_eval)
+
+    p = sub.add_parser("merge-eval-json")
+    p.add_argument("--inputs", nargs="+", required=True)
+    p.add_argument("--out", required=True)
+    p.set_defaults(func=cmd_merge_eval_json)
+
+    args = parser.parse_args()
+    args.func(args)
+
+
+if __name__ == "__main__":
+    main()
