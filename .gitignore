@@ -1,31 +1,30 @@
-# environments / cache
-.envs/
-__pycache__/
-*.pyc
-.cache/
-.vscode/
 
+# checkpoints / large artifacts
 # data
-data/raw/
+# environments / cache
+# logs
+*.bin
+*.jpeg
+*.jpg
+*.log
+*.parquet
+*.png
+*.pt
+*.pth
+*.pyc
+*.safetensors
+.cache/
+.envs/
+.vscode/
+__pycache__/
 data/features/
 data/processed/
 data/processed_h4_12k/
 data/processed_h4_30k/
 data/processed_h4_30k_nodedup/
 data/processed_h4_debug/
-*.parquet
-*.jpg
-*.jpeg
-*.png
-
-# checkpoints / large artifacts
-outputs/
-*.pt
-*.pth
-*.safetensors
-*.bin
-
-# logs
+data/raw/
+hf_upload/
 logs/
-*.log
+outputs/
 wandb/
