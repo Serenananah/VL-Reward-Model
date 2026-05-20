@@ -1,9 +1,4 @@
 # Core runtime dependencies used by the training/evaluation scripts.
-#
-# The experiments were run in two existing conda environments on the server:
-# - InternVL env: /data3/ljl/miniconda3/envs/internvl
-# - Qwen2-VL env: /data3/ljl/miniconda3/envs/qwen25vl
-#
 # Torch wheels are CUDA-specific; install the torch/torchvision pair that
 # matches your CUDA runtime first, then install the remaining packages.
 
