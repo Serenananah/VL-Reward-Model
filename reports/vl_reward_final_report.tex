@@ -266,6 +266,103 @@ Qwen reward eval & \code{results/qwen2vl7b_lora_reward_h4mix30k_r8_l20_len768_4g
 
 Hugging Face 权重文件是 PyTorch checkpoint bundle，包含 LoRA 可训练参数、score head state、LoRA config 和训练参数。为了避免 GitHub 仓库过大，代码仓库不上传 checkpoint，权重单独放在两个 HF repo。
 
+\section{复现流程}
+
+本节给出从环境、数据准备、训练到评测的复现路径。实际服务器路径为 \code{/data4/ljl/csh/vl_reward_work}；如果在其它机器复现，只需要保持 JSONL 字段格式一致，并把模型路径替换成自己的本地路径。
+
+\subsection{环境安装}
+
+两个模型使用了不同的已验证环境。InternVL 最终训练环境为 \code{/data3/ljl/miniconda3/envs/internvl}，主要版本为 \code{torch==2.1.2+cu118}, \code{torchvision==0.16.2+cu118}, \code{transformers==4.37.2}, \code{accelerate==0.34.2}, \code{pandas==2.3.3}, \code{pyarrow==21.0.0}, \code{Pillow==11.3.0}, \code{tqdm==4.67.3}, \code{timm==0.9.12}, \code{einops==0.6.1}。
+
+Qwen2-VL 最终训练环境为 \code{/data3/ljl/miniconda3/envs/qwen25vl}，主要版本为 \code{torch==2.5.1+cu121}, \code{torchvision==0.20.1+cu121}, \code{transformers==5.1.0}, \code{accelerate==1.12.0}, \code{qwen-vl-utils==0.0.8}, \code{Pillow==12.1.0}, \code{tqdm==4.67.3}, \code{numpy==1.26.4}。
+
+代码仓库中补充了 \code{requirements.txt}。由于两个模型的测试环境使用了不同的 torch/transformers 版本，最稳妥的做法是建立两个 conda 环境，而不是强行把所有版本装进同一个环境。示例：
+
+\begin{verbatim}
+conda create -n internvl_reward python=3.9 -y
+conda activate internvl_reward
+pip install torch==2.1.2 torchvision==0.16.2 --index-url https://download.pytorch.org/whl/cu118
+pip install transformers==4.37.2 accelerate==0.34.2 pandas==2.3.3 pyarrow==21.0.0 \
+  Pillow==11.3.0 tqdm==4.67.3 timm==0.9.12 einops==0.6.1 sentencepiece==0.1.99
+
+conda create -n qwen2vl_reward python=3.10 -y
+conda activate qwen2vl_reward
+pip install torch==2.5.1 torchvision==0.20.1 --index-url https://download.pytorch.org/whl/cu121
+pip install transformers==5.1.0 accelerate==1.12.0 qwen-vl-utils==0.0.8 \
+  Pillow==12.1.0 tqdm==4.67.3 numpy==1.26.4 safetensors==0.7.0
+\end{verbatim}
+
+\subsection{数据准备}
+
+原始数据需要先处理成偏好对 JSONL，每行至少包含 \code{image_path}, \code{query}, \code{response_a}, \code{response_b}, \code{label}。其中 \code{label=0} 表示 A 更优，\code{label=1} 表示 B 更优。原实验处理流程为：
+
+\begin{verbatim}
+python scripts/internvl_reward.py prepare \
+  --rlhf-v-parquet data/raw/RLHF-V-Dataset.parquet \
+  --vlrewardbench-jsonl data/processed/vlrewardbench_eval.jsonl \
+  --out-dir data/processed
+
+python scripts/internvl_reward.py prepare-h4 \
+  --h4-dir data/raw/rlaif_h4 \
+  --vlrewardbench-jsonl data/processed/vlrewardbench_eval.jsonl \
+  --out-dir data/processed_h4_30k_nodedup \
+  --max-train 29000 --max-val 1000
+
+python scripts/internvl_reward.py mix-jsonl \
+  --inputs data/processed_h4_30k_nodedup/train_pairs_h4.jsonl data/processed/train_pairs.jsonl \
+  --out data/processed_h4_30k_nodedup/train_pairs_mix.jsonl
+\end{verbatim}
+
+\subsection{训练命令}
+
+InternVL2.5-2B reward 训练命令如下：
+
+\begin{verbatim}
+CUDA_VISIBLE_DEVICES=0,1,2,3 torchrun --nproc_per_node 4 scripts/internvl_reward.py train-lora-reward \
+  --model-path /data2/ljl/csh/pretrained_model/InternVL2_5-2B \
+  --train-jsonl data/processed_h4_30k_nodedup/train_pairs_mix.jsonl \
+  --val-jsonl data/processed_h4_30k_nodedup/val_pairs_mix.jsonl \
+  --out-dir outputs/internvl25_2b_lora_reward_h4mix30k_r16_l8_len1536_no_logits_4g \
+  --max-num 4 --max-length 1536 --lora-rank 16 --lora-alpha 32 --lora-layer-start 8 \
+  --grad-accum 8 --epochs 1
+\end{verbatim}
+
+Qwen2-VL-7B reward 训练命令如下：
+
+\begin{verbatim}
+CUDA_VISIBLE_DEVICES=0,1,2,3 torchrun --nproc_per_node 4 scripts/qwen2vl_reward.py train \
+  --model-path /data2/ljl/csh/pretrained_model/Qwen2-VL-7B-Instruct \
+  --train-jsonl data/processed_h4_30k_nodedup/train_pairs_mix.jsonl \
+  --val-jsonl data/processed_h4_30k_nodedup/val_pairs_mix.jsonl \
+  --out-dir outputs/qwen2vl7b_lora_reward_h4mix30k_r8_l20_len768_4g \
+  --max-length 768 --min-pixels 50176 --max-pixels 200704 \
+  --lora-rank 8 --lora-alpha 16 --lora-layer-start 20 --grad-accum 8 --epochs 1
+\end{verbatim}
+
+\subsection{评测命令}
+
+VLRewardBench 评测采用四卡分片方式。以 InternVL reward 为例，每张卡运行一个 shard：
+
+\begin{verbatim}
+for i in 0 1 2 3; do
+  CUDA_VISIBLE_DEVICES=$i python scripts/internvl_reward.py eval-lora-reward \
+    --model-path /data2/ljl/csh/pretrained_model/InternVL2_5-2B \
+    --jsonl data/processed/vlrewardbench_eval.jsonl \
+    --checkpoint outputs/internvl25_2b_lora_reward_h4mix30k_r16_l8_len1536_no_logits_4g/reward_lora_best.pt \
+    --out results/internvl25_reward_shard${i}.json \
+    --device cuda:0 --max-num 4 --max-length 1536 \
+    --num-shards 4 --shard-index ${i} &
+done
+wait
+
+python scripts/internvl_reward.py merge-eval-json \
+  --inputs results/internvl25_reward_shard0.json results/internvl25_reward_shard1.json \
+           results/internvl25_reward_shard2.json results/internvl25_reward_shard3.json \
+  --out results/internvl25_reward_merged.json
+\end{verbatim}
+
+Qwen reward 和 base judge 的评测入口分别是 \code{scripts/qwen2vl_reward.py eval} 与 \code{scripts/qwen2vl_reward.py base-judge-eval}；InternVL base judge 入口是 \code{scripts/internvl_reward.py base-judge-eval}。代码仓库中的 \code{results/*.json} 已经是最终 merged 版本。
+
 \section{结论与后续改进}
 
 本实验完成了两个多模态 reward model 的训练、评测和权重保存。关键结论是：reward model 的效果高度依赖偏好数据规模、数据清洗、LoRA 覆盖范围和显存友好的 hidden-state-only 实现。最终 InternVL2.5-2B reward 达到 71.21\%，Qwen2-VL-7B reward 达到 66.56\%。
