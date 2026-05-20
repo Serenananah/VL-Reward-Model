@@ -1,0 +1,16 @@
+# Exact package versions used for the Qwen2-VL-7B reward-model experiments.
+# Tested environment on the server:
+#   /data3/ljl/miniconda3/envs/qwen25vl
+#
+# Install torch/torchvision from the CUDA wheel index first if needed:
+#   pip install torch==2.5.1 torchvision==0.20.1 --index-url https://download.pytorch.org/whl/cu121
+
+torch==2.5.1
+torchvision==0.20.1
+transformers==5.1.0
+accelerate==1.12.0
+qwen-vl-utils==0.0.8
+numpy==1.26.4
+Pillow==12.1.0
+tqdm==4.67.3
+safetensors==0.7.0

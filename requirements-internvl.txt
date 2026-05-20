@@ -1,0 +1,20 @@
+# Exact package versions used for the InternVL2.5-2B reward-model experiments.
+# Tested environment on the server:
+#   /data3/ljl/miniconda3/envs/internvl
+#
+# Install torch/torchvision from the CUDA wheel index first if needed:
+#   pip install torch==2.1.2 torchvision==0.16.2 --index-url https://download.pytorch.org/whl/cu118
+
+torch==2.1.2
+torchvision==0.16.2
+transformers==4.37.2
+accelerate==0.34.2
+numpy==1.26.4
+pandas==2.3.3
+pyarrow==21.0.0
+Pillow==11.3.0
+tqdm==4.67.3
+timm==0.9.12
+einops==0.6.1
+sentencepiece==0.1.99
+protobuf==6.33.5

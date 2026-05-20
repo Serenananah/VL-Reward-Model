@@ -16,13 +16,15 @@ The base score is measured by direct generative A/B judging with the original mo
 - `scripts/internvl_reward.py`: InternVL2.5 reward training/evaluation utilities.
 - `scripts/qwen2vl_reward.py`: Qwen2-VL reward training/evaluation utilities with hand-written LoRA.
 - `results/`: final merged VLRewardBench JSON results.
-- `reports/vl_reward_final_report.tex`: LaTeX report source.
-- `reports/vl_reward_final_report.pdf`: compiled report.
-- `requirements.txt`: minimal Python dependencies and the exact package versions used by the two experiment environments.
+- `requirements-internvl.txt`: exact package versions used by the InternVL2.5-2B experiment environment.
+- `requirements-qwen2vl.txt`: exact package versions used by the Qwen2-VL-7B experiment environment.
 
 ## Reproduction
 
-The original experiments were run under local base models and local dataset, please change the urls in code.
+The original experiments were run under `/data4/ljl/csh/vl_reward_work` with local base models at:
+
+- `/data2/ljl/csh/pretrained_model/InternVL2_5-2B`
+- `/data2/ljl/csh/pretrained_model/Qwen2-VL-7B-Instruct`
 
 Create dependencies with two separate environments if possible, because the final InternVL and Qwen runs used different tested Transformers/Torch stacks:
 
@@ -31,15 +33,13 @@ Create dependencies with two separate environments if possible, because the fina
 conda create -n internvl_reward python=3.9 -y
 conda activate internvl_reward
 pip install torch==2.1.2 torchvision==0.16.2 --index-url https://download.pytorch.org/whl/cu118
-pip install transformers==4.37.2 accelerate==0.34.2 pandas==2.3.3 pyarrow==21.0.0 \
-  Pillow==11.3.0 tqdm==4.67.3 timm==0.9.12 einops==0.6.1 sentencepiece==0.1.99
+pip install -r requirements-internvl.txt
 
 # Qwen2-VL environment used in the final run
 conda create -n qwen2vl_reward python=3.10 -y
 conda activate qwen2vl_reward
 pip install torch==2.5.1 torchvision==0.20.1 --index-url https://download.pytorch.org/whl/cu121
-pip install transformers==5.1.0 accelerate==1.12.0 qwen-vl-utils==0.0.8 \
-  Pillow==12.1.0 tqdm==4.67.3 numpy==1.26.4 safetensors==0.7.0
+pip install -r requirements-qwen2vl.txt
 ```
 
 Prepare data. The scripts expect preference-pair JSONL files with image paths, query, `response_a`, `response_b`, and label. In the original run, RLHF-V and HuggingFaceH4 `rlaif-v_formatted` were processed into:
