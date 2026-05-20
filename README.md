@@ -22,10 +22,7 @@ The base score is measured by direct generative A/B judging with the original mo
 
 ## Reproduction
 
-The original experiments were run under `/data4/ljl/csh/vl_reward_work` with local base models at:
-
-- `/data2/ljl/csh/pretrained_model/InternVL2_5-2B`
-- `/data2/ljl/csh/pretrained_model/Qwen2-VL-7B-Instruct`
+The original experiments were run under local base models and local dataset, please change the urls in code.
 
 Create dependencies with two separate environments if possible, because the final InternVL and Qwen runs used different tested Transformers/Torch stacks:
 
